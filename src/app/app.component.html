@@ -1,0 +1,35 @@
+<ion-app>
+  <ion-split-pane>
+    <ion-menu>
+      <ion-header>
+        <ion-item color="success">
+          <ion-avatar slot="start" style="margin-left: 10%;">
+            <img src="assets/img/person.jpeg">
+          </ion-avatar>
+          <ion-label>
+            <h2>Beckham</h2>
+            <p>个人签名...</p>
+          </ion-label>
+        </ion-item>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+        <ion-menu-toggle auto-hide="false">
+          <ion-button shape="round" routerLink="/driver">
+            <ion-icon slot="start" name="bus"></ion-icon> 切换为司机
+          </ion-button>
+        </ion-menu-toggle>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

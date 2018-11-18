@@ -1,0 +1,7 @@
+{
+  "name": "freight",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

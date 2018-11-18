@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sr/values-sr.xml",
+            "map": [
+                {
+                    "source": "/home/jmzwcn/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/6f938f3d9cb52b08a70dca5c4bf18e4e/res/values-sr/values-sr.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/home/jmzwcn/work/src/github.com/freight/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sr/values-sr.xml",
+            "map": [
+                {
+                    "source": "/home/jmzwcn/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/6f938f3d9cb52b08a70dca5c4bf18e4e/res/values-sr/values-sr.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}
