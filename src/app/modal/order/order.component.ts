@@ -15,12 +15,13 @@ export class OrderComponent implements OnInit {
     private contacts: Contacts) { }
 
   ngOnInit() {
+    this.person = { 'name': '张三', 'tel': '13999999999' };
   }
 
   selectContact() {
     this.contacts.pickContact().then(e => {
-      this.person.name = e.name;
-      this.person.tel = e.phoneNumbers[0];
+      this.person.name = e.displayName;
+      this.person.tel = e.phoneNumbers[0].value;
     });
   }
 }
