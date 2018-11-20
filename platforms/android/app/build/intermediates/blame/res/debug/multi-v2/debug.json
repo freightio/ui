@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/jmzwcn/work/src/github.com/freight/platforms/android/app/build/intermediates/res/merged/debug/values-gu_values-gu.arsc.flat",
+            "outputFile": "/home/jmzwcn/work/src/github.com/freight/platforms/android/app/build/intermediates/res/merged/debug/values-km_values-km.arsc.flat",
             "map": [
                 {
-                    "source": "/home/jmzwcn/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/6f938f3d9cb52b08a70dca5c4bf18e4e/res/values-gu/values-gu.xml",
+                    "source": "/home/jmzwcn/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/6f938f3d9cb52b08a70dca5c4bf18e4e/res/values-km/values-km.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,10 @@
             ]
         },
         {
-            "outputFile": "/home/jmzwcn/work/src/github.com/freight/platforms/android/app/build/intermediates/res/merged/debug/values-km_values-km.arsc.flat",
+            "outputFile": "/home/jmzwcn/work/src/github.com/freight/platforms/android/app/build/intermediates/res/merged/debug/values-gu_values-gu.arsc.flat",
             "map": [
                 {
-                    "source": "/home/jmzwcn/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/6f938f3d9cb52b08a70dca5c4bf18e4e/res/values-km/values-km.xml",
+                    "source": "/home/jmzwcn/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/6f938f3d9cb52b08a70dca5c4bf18e4e/res/values-gu/values-gu.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -85,10 +85,10 @@
             ]
         },
         {
-            "outputFile": "/home/jmzwcn/work/src/github.com/freight/platforms/android/app/build/intermediates/res/merged/debug/values-gl_values-gl.arsc.flat",
+            "outputFile": "/home/jmzwcn/work/src/github.com/freight/platforms/android/app/build/intermediates/res/merged/debug/values-pt-rPT_values-pt-rPT.arsc.flat",
             "map": [
                 {
-                    "source": "/home/jmzwcn/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/6f938f3d9cb52b08a70dca5c4bf18e4e/res/values-gl/values-gl.xml",
+                    "source": "/home/jmzwcn/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/6f938f3d9cb52b08a70dca5c4bf18e4e/res/values-pt-rPT/values-pt-rPT.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -100,10 +100,10 @@
             ]
         },
         {
-            "outputFile": "/home/jmzwcn/work/src/github.com/freight/platforms/android/app/build/intermediates/res/merged/debug/values-pt-rPT_values-pt-rPT.arsc.flat",
+            "outputFile": "/home/jmzwcn/work/src/github.com/freight/platforms/android/app/build/intermediates/res/merged/debug/values-gl_values-gl.arsc.flat",
             "map": [
                 {
-                    "source": "/home/jmzwcn/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/6f938f3d9cb52b08a70dca5c4bf18e4e/res/values-pt-rPT/values-pt-rPT.xml",
+                    "source": "/home/jmzwcn/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/6f938f3d9cb52b08a70dca5c4bf18e4e/res/values-gl/values-gl.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

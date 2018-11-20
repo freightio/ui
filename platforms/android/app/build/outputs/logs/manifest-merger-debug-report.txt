@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
-INJECTED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
-INJECTED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
-INJECTED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
+ADDED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:2:1-25:12
 MERGED from [:barcodescanner-release-2.1.5:] /home/jmzwcn/.gradle/caches/transforms-1/files-1.1/barcodescanner-release-2.1.5.aar/3b6e8b3e27ff3c6f7cf14891754fe417/AndroidManifest.xml:2:1-14:12
 MERGED from [com.android.support:support-v4:27.1.1] /home/jmzwcn/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/03695cbaf01b8a282f044df96a71e22f/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-media-compat:27.1.1] /home/jmzwcn/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/4c75f08cc03980075c283bf0089a9ab2/AndroidManifest.xml:17:1-22:12
@@ -16,9 +16,9 @@ MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/jmzwcn/.gradle/caches/t
 MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/jmzwcn/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/603c2074b9b3e5e6c9404abeab6f6968/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/jmzwcn/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/11fb873ea2c4382457d06097d1737087/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] /home/jmzwcn/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/4b458a30d8c6634986f4242203daffa8/AndroidManifest.xml:17:1-22:12
-INJECTED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
-INJECTED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
-INJECTED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:2:1-22:12
+INJECTED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:2:1-25:12
+INJECTED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:2:1-25:12
 	package
 		ADDED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:2:98-126
 		INJECTED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml
@@ -167,3 +167,15 @@ ADDED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/s
 		ADDED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:21:58-81
 	android:name
 		ADDED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:21:19-57
+uses-permission#android.permission.READ_CONTACTS
+ADDED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:22:5-72
+	android:name
+		ADDED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:22:22-69
+uses-permission#android.permission.WRITE_CONTACTS
+ADDED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:23:5-73
+	android:name
+		ADDED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:23:22-70
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:24:5-71
+	android:name
+		ADDED from /home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:24:22-68

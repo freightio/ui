@@ -1,6 +1,7 @@
 import { Component, Injector, ViewChild } from '@angular/core';
 import { ModalController, Slides } from '@ionic/angular';
 import { ModalComponent } from '../modal/modal.component';
+import { OrderComponent } from '../modal/order/order.component';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
 
 declare var AMap;
@@ -108,7 +109,18 @@ export class HomePage {
     });
   }
 
-  beginNow() {
-    alert('正在开发中.');
+  async beginNow() {
+    // alert('正在开发中.');
+    const modal = await this.modalController.create({
+      component: OrderComponent,
+      componentProps: {
+        from: this.from,
+        to: this.to
+      }
+    });
+
+    await modal.present();
+    const result = await modal.onDidDismiss();
+    // this.from = result;
   }
 }

@@ -1,0 +1,66 @@
+<ion-toolbar color="success">
+  <ion-buttons slot="start">
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>订单联系人资料</ion-card-subtitle>
+      <ion-card-title></ion-card-title>
+    </ion-card-header>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item class="activated">
+            <ion-icon name="time" slot="start"></ion-icon>
+            <ion-label>11月20日 20：20</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="10">
+          <ion-item href="#">
+            <ion-icon name="person" slot="start"></ion-icon>
+            <ion-label>{{person?.name}}</ion-label>
+          </ion-item>
+          <ion-item class="activated">
+            <ion-icon name="call" slot="start"></ion-icon>
+            <ion-label>{{person?.tel}}</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col align-self-center style="text-align: center;" (click)="selectContact()">
+          <ion-icon name="contact"></ion-icon>
+          <br/>
+          通讯录
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card>
+
+  <ion-card>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-thumbnail>
+      <ion-label>额外需求</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-avatar>
+        备注
+      </ion-avatar>
+      <div>
+        <ion-textarea></ion-textarea>
+      </div>
+    </ion-item>
+  </ion-card>
+</ion-content>
+<ion-toolbar color="success">
+  <ion-buttons slot="end">
+    付款
+  </ion-buttons>
+</ion-toolbar>
