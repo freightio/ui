@@ -9,13 +9,14 @@ import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/cont
 })
 export class OrderComponent implements OnInit {
   from = this.navParams.get('from');
-  person: any;
+  person = { 'name': '', 'tel': '' };
+  time: any;
   constructor(
     private navParams: NavParams,
     private contacts: Contacts) { }
 
   ngOnInit() {
-    this.person = { 'name': '张三', 'tel': '13999999999' };
+    this.time = new Date();
   }
 
   selectContact() {
