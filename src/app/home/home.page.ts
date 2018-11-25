@@ -115,7 +115,9 @@ export class HomePage {
       component: OrderComponent,
       componentProps: {
         from: this.from,
-        to: this.to
+        to: this.to,
+        fee: this.fee,
+        type: this.currentFreight.name
       }
     });
 

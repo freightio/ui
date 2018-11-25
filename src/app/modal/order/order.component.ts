@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NavParams, ActionSheetController } from '@ionic/angular';
-import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts/ngx';
+import { Contacts } from '@ionic-native/contacts/ngx';
+import { environment } from '../../../environments/environment';
+import * as grpcWeb from 'grpc-web';
+import { OrdersClient } from '../../../sdk/order_grpc_web_pb';
+import { Order } from '../../../sdk/order_pb';
+
+// import  a= require("../../../sdk/order_pb.js");
 
 @Component({
   selector: 'app-order',
@@ -9,8 +15,12 @@ import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/cont
 })
 export class OrderComponent implements OnInit {
   from = this.navParams.get('from');
+  to = this.navParams.get('to');
+  fee = this.navParams.get('fee');
+  type = this.navParams.get('type');
   person = { 'name': '', 'tel': '' };
   time: any;
+
   constructor(
     private navParams: NavParams,
     private contacts: Contacts,
@@ -42,7 +52,25 @@ export class OrderComponent implements OnInit {
         text: '支付宝',
         icon: 'share',
         handler: () => {
-          console.log('Share clicked');
+          const ordersClient = new OrdersClient(environment.apiUrl, null, null);
+          const order = new Order();
+          order.setFrom(this.from.data.name);
+          order.setTosList([this.to.data.name])
+          order.setName(this.person.name);
+          order.setTel(this.person.tel);
+          order.setType(this.type);
+          order.setFee(this.fee);
+          // order.setAnnotationsList([{ "name1": "test1" }, { "name2": "test2" }])
+          const call = ordersClient.add(order, { 'custom-header-1': 'value1' },
+            (err: grpcWeb.Error, response: Order) => {
+              console.log(err);
+              console.log(response);
+            });
+          call.on('status', (status: grpcWeb.Status) => {
+            console.log(status); call.on('status', (status: grpcWeb.Status) => {
+              console.log(status);
+            });
+          });
         }
       }, {
         text: '微信',
@@ -50,7 +78,7 @@ export class OrderComponent implements OnInit {
         handler: () => {
           console.log('Play clicked');
         }
-      },  {
+      }, {
         text: 'Cancel',
         icon: 'close',
         role: 'cancel',

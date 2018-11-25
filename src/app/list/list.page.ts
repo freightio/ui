@@ -1,4 +1,8 @@
+import * as grpcWeb from 'grpc-web';
+import { GreeterClient } from '../../sdk/helloworld_grpc_web_pb';
+import { HelloRequest, HelloReply } from '../../sdk/helloworld_pb';
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-list',
@@ -28,6 +32,18 @@ export class ListPage implements OnInit {
         icon: this.icons[Math.floor(Math.random() * this.icons.length)]
       });
     }
+
+    const client = new GreeterClient(environment.apiUrl, null, null);
+    console.log(client);
+    const request = new HelloRequest()
+    request.setName("super-man");
+    const call = client.sayHello(request, { 'custom-header-1': 'value1' },
+      (err: grpcWeb.Error, response: HelloReply) => {
+        console.log(response.getMessage());
+      });
+    call.on('status', (status: grpcWeb.Status) => {
+      console.log(status);
+    });
   }
 
   ngOnInit() {

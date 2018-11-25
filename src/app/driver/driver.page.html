@@ -20,9 +20,9 @@
     </ion-toolbar>
     <!-- </ion-tab-bar> -->
     <ion-tab tab="home" class="tab-css">
-      <ion-card *ngFor="let user of users" (click)="showUserDetail(user)">
+      <ion-card *ngFor="let order of orders" (click)="showUserDetail(order)">
         <ion-item class="activated">
-          <ion-label>{{user.name}}</ion-label>
+          <ion-label>{{order.name}}</ion-label>
           <ion-icon name="pin" slot="end"></ion-icon>
           <ion-badge color="secondary">距您1公里</ion-badge>
         </ion-item>
@@ -31,15 +31,15 @@
             <ion-row>
               <ion-item>
                 <ion-icon name="wifi" slot="start"></ion-icon>
-                <ion-label>{{user.time}}</ion-label>
+                <ion-label>{{order.time}}</ion-label>
               </ion-item>
             </ion-row>
-            <ion-row>起点:{{user.from}}</ion-row>
-            <ion-row>终点:{{user.to}}</ion-row>
-            <ion-row>需要车型:{{user.type}}</ion-row>
+            <ion-row>起点:{{order.from}}</ion-row>
+            <ion-row>终点:{{order.tos}}</ion-row>
+            <ion-row>需要车型:{{order.type}}</ion-row>
             备注
           </ion-col>
-          <ion-col text-center align-self-center style="font-size: 20px;color: red;font-weight: bolder">{{user.fee}}元</ion-col>
+          <ion-col text-center align-self-center style="font-size: 20px;color: red;font-weight: bolder">{{order.fee}}元</ion-col>
         </ion-row>
       </ion-card>
     </ion-tab>
