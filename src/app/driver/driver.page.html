@@ -22,7 +22,7 @@
     <ion-tab tab="home" class="tab-css">
       <ion-card *ngFor="let order of orders" (click)="showUserDetail(order)">
         <ion-item class="activated">
-          <ion-label>{{order.name}}</ion-label>
+          <ion-label>{{order.contact?.name}}</ion-label>
           <ion-icon name="pin" slot="end"></ion-icon>
           <ion-badge color="secondary">距您1公里</ion-badge>
         </ion-item>
@@ -34,8 +34,8 @@
                 <ion-label>{{order.time}}</ion-label>
               </ion-item>
             </ion-row>
-            <ion-row>起点:{{order.from}}</ion-row>
-            <ion-row>终点:{{order.tos}}</ion-row>
+            <ion-row>起点:{{order.from?.name}}</ion-row>
+            <ion-row>终点:{{order.to?.name}}</ion-row>
             <ion-row>需要车型:{{order.type}}</ion-row>
             备注
           </ion-col>

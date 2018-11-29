@@ -5,6 +5,7 @@ import { OrderComponent } from '../modal/order/order.component';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
 
 declare var AMap;
+declare var proto;
 
 @Component({
   selector: 'app-home',
@@ -16,9 +17,10 @@ export class HomePage {
   showLeftButton = false;
   showRightButton = true;
   currentFreight: any;
-  from: any;
+  //from: any;
   to: any;
-  fee: any;
+  //fee: any;
+  order: any;
   sliderConfig = {
     slidesPerView: 4,
     effect: 'flip'
@@ -36,6 +38,7 @@ export class HomePage {
     private modalController: ModalController,
     private barcodeScanner: BarcodeScanner) {
     this.currentFreight = this.freights[0];
+    this.order = new proto.backend.Order();
     // this.from = { 'data': { 'name': '起点' } };
     // this.to = { 'data': { 'name': '终点' } };
   }
@@ -62,6 +65,7 @@ export class HomePage {
 
   itemClick(freight) {
     this.currentFreight = freight;
+    this.order.type = freight.name;
   }
 
   async presentFromModal() {
@@ -72,7 +76,8 @@ export class HomePage {
 
     await modal.present();
     const result = await modal.onDidDismiss();
-    this.from = result;
+    // this.from = result;
+    this.order.from = result.data;
   }
 
   async presentToModal() {
@@ -83,17 +88,19 @@ export class HomePage {
 
     await modal.present();
     const result = await modal.onDidDismiss();
-    this.to = result;
+    this.to = result.data;
+    this.order.tos = [result.data];
     this.computeFee();
   }
 
   computeFee() {
-    if (this.from.data && this.to.data) {
-      const p1 = this.from.data.location.split(',');
-      const p2 = this.to.data.location.split(',');
+    if (this.order.from && this.order.tos[0]) {
+      const p1 = this.order.from.location.split(',');
+      const p2 = this.order.tos[0].location.split(',');
       // 返回 p1 到 p2 间的地面距离，单位：米
       const dis = AMap.GeometryUtil.distance(p1, p2);
-      this.fee = dis * this.currentFreight.price / 1000;
+      //this.fee = dis * this.currentFreight.price / 1000;
+      this.order.fee = (dis * this.currentFreight.price / 1000).toFixed(2);
     }
   }
 
@@ -114,10 +121,11 @@ export class HomePage {
     const modal = await this.modalController.create({
       component: OrderComponent,
       componentProps: {
-        from: this.from,
-        to: this.to,
-        fee: this.fee,
-        type: this.currentFreight.name
+        order: this.order
+        // from: this.from,
+        // to: this.to,
+        // fee: this.fee,
+        // type: this.currentFreight.name
       }
     });
 

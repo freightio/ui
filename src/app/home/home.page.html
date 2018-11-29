@@ -33,14 +33,14 @@
   </ion-row>
   <ion-row>
     <ion-col text-center class="small-size">{{currentFreight?.weight}}
-      <br/>载重</ion-col>
+      <br />载重</ion-col>
     <ion-col text-center class="small-size">{{currentFreight?.lwh}}
-      <br/>长宽高</ion-col>
+      <br />长宽高</ion-col>
     <ion-col text-end class="small-size">{{currentFreight?.cube}}
-      <br/>载货体积</ion-col>
+      <br />载货体积</ion-col>
   </ion-row>
-  <br/>
-  <br/>
+  <br />
+  <br />
   <ion-list>
     <ion-item>
       <ion-avatar slot="start" (click)="presentFromModal()">
@@ -48,8 +48,8 @@
       </ion-avatar>
       <div>
         <div (click)="presentFromModal()">起点</div>
-        {{from?.data?.address}}
-        <ion-input *ngIf="from?.data" [(ngModel)]="from?.data.name" class="input-css"></ion-input>
+        {{order?.from?.address}}
+        <ion-input *ngIf="order.from" [(ngModel)]="order.from.name" class="input-css"></ion-input>
       </div>
     </ion-item>
     <ion-item>
@@ -58,12 +58,12 @@
       </ion-avatar>
       <div>
         <div (click)="presentToModal()">终点</div>
-        {{to?.data?.address}}
-        <ion-input *ngIf="to?.data" [(ngModel)]="to?.data.name" class="input-css"></ion-input>
+        {{to?.address}}
+        <ion-input *ngIf="to" [(ngModel)]="to.name" class="input-css"></ion-input>
       </div>
     </ion-item>
   </ion-list>
-  费用：¥{{fee}}
+  费用：¥{{order.fee}}
 </ion-content>
 <ion-footer>
   <ion-toolbar color="success">
