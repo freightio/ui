@@ -4,8 +4,7 @@ import { Contacts } from '@ionic-native/contacts/ngx';
 import { environment } from '../../../environments/environment';
 import * as grpcWeb from 'grpc-web';
 import { OrdersClient } from '../../../sdk/order_grpc_web_pb';
-import { Order, Contact, Position } from '../../../sdk/order_pb';
-import { concat } from 'rxjs';
+import { Order, Position, Sender } from '../../../sdk/order_pb';
 
 //declare var proto;
 
@@ -58,16 +57,18 @@ export class OrderComponent implements OnInit {
           console.log('==', this.order);
           const ordersClient = new OrdersClient(environment.apiUrl, null, null);
           const tsOrder = new Order();
-          const contact = new Contact()
-          contact.setName(this.person.name);
-          contact.setTel(this.person.tel);
-          tsOrder.setContact(contact);
+          let sender = new Sender()
+          sender.setName(this.person.name);
+          sender.setTel(this.person.tel);
+          tsOrder.setSender(sender);
           let from = new Position();
           from.setName(this.order.from.name);
+          from.setLocation(this.order.from.location);
           from.setAddress(this.order.from.address);
           tsOrder.setFrom(from);
           let to = new Position();
           to.setName(this.order.tos[0].name);
+          to.setLocation(this.order.tos[0].location);
           to.setAddress(this.order.tos[0].address);
           tsOrder.setTosList([to])
           tsOrder.setType(this.order.type);
