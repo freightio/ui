@@ -46,4 +46,8 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+
+  login(): void {
+    alert('登陆');
+  }
 }

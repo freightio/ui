@@ -1,25 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/jmzwcn/work/src/github.com/freightio/ui/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
+            "outputFile": "/home/daniel/go/src/github.com/freightio/ui/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "/home/jmzwcn/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/4c75f08cc03980075c283bf0089a9ab2/res/values-v24/values-v24.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,121,182,248",
-                        "endColumns": "65,60,65,66",
-                        "endOffsets": "116,177,243,310"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "/home/jmzwcn/work/src/github.com/freight/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
-            "map": [
-                {
-                    "source": "/home/jmzwcn/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/4c75f08cc03980075c283bf0089a9ab2/res/values-v24/values-v24.xml",
+                    "source": "/home/daniel/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/7898f1e44cf3b9a6acf047954df9cc73/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
