@@ -16,12 +16,12 @@ export class DriverPage implements OnInit {
   orders: any[];
   ordersClient = new OrdersClient(environment.apiUrl, null, null);
   constructor(
-    private alertController: AlertController,
+    private alertController: AlertController
   ) {
     this.orders = [
-      { 'sender': { 'name': '用户1' }, 'type': '小面包车', 'created': '2018-12-12,16:16', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 66.66 },
-      { 'sender': { 'name': '用户2' }, 'type': '大货车', 'created': '2018-12-12,18:18', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 88.88 },
-      { 'sender': { 'name': '用户3' }, 'type': '中货车', 'created': '2018-12-12,19:19', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 99.99 }
+      { 'sender': { 'name': '用户1' }, 'type': '小面包车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 66.66 },
+      { 'sender': { 'name': '用户2' }, 'type': '大货车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 88.88 },
+      { 'sender': { 'name': '用户3' }, 'type': '中货车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 99.99 }
     ];
   }
 
@@ -78,10 +78,5 @@ export class DriverPage implements OnInit {
       ]
     });
     await alert.present();
-  }
-
-  toDate(intValue): Date {
-    var date = new Date(intValue)
-    return date;
   }
 }

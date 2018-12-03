@@ -31,7 +31,7 @@
             <ion-row>
               <ion-item>
                 <ion-icon name="wifi" slot="start"></ion-icon>
-                <ion-label>{{order.created}}</ion-label>
+                <ion-label>{{order.created | date:'MM-dd HH:mm'}}</ion-label>
               </ion-item>
             </ion-row>
             <ion-row>起点:{{order.from?.name}}</ion-row>
