@@ -6,8 +6,8 @@
           <ion-avatar slot="start" style="margin-left: 10%;">
             <img src="assets/img/person.jpeg">
           </ion-avatar>
-          <ion-label (click)="login()">
-            <h2>Beckham</h2>
+          <ion-label (click)="login($event)">
+            <h2>{{username}}</h2>
             <p>个人签名...</p>
           </ion-label>
         </ion-item>

@@ -57,7 +57,7 @@ export class DriverPage implements OnInit {
 
   async showUserDetail(order) {
     const alert = await this.alertController.create({
-      header: '确认接单' + order.created + '?',
+      header: '确认接单[' + order.sender.name + ']?',
       buttons: [
         {
           text: '取消',
@@ -69,7 +69,10 @@ export class DriverPage implements OnInit {
         }, {
           text: '确定',
           handler: data => {
-            this.ordersClient.update(new Order(), { 'custom-header-1': 'value1' },
+            let tsOrder = new Order();
+            tsOrder.setId(order.id)
+            tsOrder.setStatus('accept');
+            this.ordersClient.update(tsOrder, { 'custom-header-1': 'value1' },
               (err: grpcWeb.Error, response: Order) => {
                 console.log(response);
               });

@@ -15,11 +15,14 @@ const routes: Routes = [
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
   },
-  { path: 'driver', loadChildren: './driver/driver.module#DriverPageModule' }
+  {
+    path: 'driver',
+    loadChildren: './driver/driver.module#DriverPageModule'
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

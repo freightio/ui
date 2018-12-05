@@ -1,0 +1,20 @@
+<p>
+  登陆
+</p>
+
+<ion-item>
+  <ion-label position="floating">手机号</ion-label>
+  <ion-input [(ngModel)]="username"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">密码</ion-label>
+  <ion-input></ion-input>
+</ion-item>
+<!-- Icons -->
+<ion-button>
+  取消
+</ion-button>
+
+<ion-button (click)="login()">
+  确定
+</ion-button>
