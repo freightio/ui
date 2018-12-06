@@ -8,8 +8,9 @@ import { Events, PopoverController } from '@ionic/angular';
 })
 export class LoginComponent implements OnInit {
   username = '';
+  password = '';
   constructor(
-    public events: Events,
+    private events: Events,
     private popoverController: PopoverController
   ) { }
 

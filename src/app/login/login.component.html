@@ -1,20 +1,17 @@
-<p>
-  登陆
-</p>
+<ion-card nopadding>
+  <ion-card-header>
+    <ion-card-subtitle></ion-card-subtitle>
+    <ion-card-title>登录</ion-card-title>
+  </ion-card-header>
 
-<ion-item>
-  <ion-label position="floating">手机号</ion-label>
-  <ion-input [(ngModel)]="username"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label position="floating">密码</ion-label>
-  <ion-input></ion-input>
-</ion-item>
-<!-- Icons -->
-<ion-button>
-  取消
-</ion-button>
-
-<ion-button (click)="login()">
-  确定
-</ion-button>
+  <ion-card-content>
+    <ion-item>
+      <ion-input type="text" placeholder="手机号码" [(ngModel)]="username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="password" placeholder="密码" [(ngModel)]="password"></ion-input>
+    </ion-item>
+    <ion-button color="primary" (click)="login()">登 录</ion-button>
+    <ion-label>没有账号？注册</ion-label>
+  </ion-card-content>
+</ion-card>
