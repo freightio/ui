@@ -16,7 +16,7 @@
         <ion-col>
           <ion-item class="activated">
             <ion-icon name="time" slot="start"></ion-icon>
-            <ion-label>{{time|date:'MM/dd H:mm'}}</ion-label>
+            <ion-label>{{order.created | date:'MM/dd H:mm'}}</ion-label>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -58,5 +58,5 @@
   </ion-card>
 </ion-content>
 <ion-toolbar color="success" text-center (click)="presentActionSheet()">
-  继续
+  下一步
 </ion-toolbar>

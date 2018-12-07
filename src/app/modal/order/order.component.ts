@@ -15,12 +15,7 @@ import { Order, Position, Sender } from '../../../sdk/order_pb';
 })
 export class OrderComponent implements OnInit {
   order = this.navParams.get('order');
-  //from = this.navParams.get('from');
-  //to = this.navParams.get('to');
-  //fee = this.navParams.get('fee');
-  //type = this.navParams.get('type');
   person = { 'name': '', 'tel': '' };
-  time: any;
 
   constructor(
     private navParams: NavParams,
@@ -30,7 +25,9 @@ export class OrderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.time = new Date();
+    let created = new Date();
+    created.setMinutes(created.getMinutes() + 5);
+    this.order.created = created.getTime();
   }
 
   selectContact() {
@@ -49,6 +46,7 @@ export class OrderComponent implements OnInit {
         icon: 'trash',
         handler: () => {
           console.log('Delete clicked');
+          alert('即将支持');
         }
       }, {
         text: '支付宝',
@@ -57,15 +55,18 @@ export class OrderComponent implements OnInit {
           console.log('==', this.order);
           const ordersClient = new OrdersClient(environment.apiUrl, null, null);
           const tsOrder = new Order();
+
           let sender = new Sender()
           sender.setName(this.person.name);
           sender.setTel(this.person.tel);
           tsOrder.setSender(sender);
+
           let from = new Position();
           from.setName(this.order.from.name);
           from.setLocation(this.order.from.location);
           from.setAddress(this.order.from.address);
           tsOrder.setFrom(from);
+
           let to = new Position();
           to.setName(this.order.tos[0].name);
           to.setLocation(this.order.tos[0].location);
@@ -73,6 +74,7 @@ export class OrderComponent implements OnInit {
           tsOrder.setTosList([to])
           tsOrder.setType(this.order.type);
           tsOrder.setFee(this.order.fee);
+          tsOrder.setCreated(this.order.created);
           const call = ordersClient.add(tsOrder, { 'custom-header-1': 'value1' },
             (err: grpcWeb.Error, response: Order) => {
               console.log(err);
@@ -90,6 +92,7 @@ export class OrderComponent implements OnInit {
         icon: 'arrow-dropright-circle',
         handler: () => {
           console.log('Play clicked');
+          alert('即将支持');
           // var ordersClient = new proto.backend.OrdersClient(environment.apiUrl);
           // var order = new proto.backend.Order();
           // order.setName('张三');
@@ -111,7 +114,7 @@ export class OrderComponent implements OnInit {
           // });
         }
       }, {
-        text: 'Cancel',
+        text: '取消',
         icon: 'close',
         role: 'cancel',
         handler: () => {

@@ -1,6 +1,6 @@
 import { Component, Injector, ViewChild } from '@angular/core';
 import { ModalController, Slides } from '@ionic/angular';
-import { ModalComponent } from '../modal/modal.component';
+import { ModalComponent } from '../modal/map/modal.component';
 import { OrderComponent } from '../modal/order/order.component';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
 
@@ -39,8 +39,7 @@ export class HomePage {
     private barcodeScanner: BarcodeScanner) {
     this.currentFreight = this.freights[0];
     this.order = new proto.backend.Order();
-    // this.from = { 'data': { 'name': '起点' } };
-    // this.to = { 'data': { 'name': '终点' } };
+    this.order.type = this.currentFreight.name;
   }
 
   // Method executed when the slides are changed
@@ -117,7 +116,11 @@ export class HomePage {
   }
 
   async beginNow() {
-    // alert('正在开发中.');
+    if (!this.order.from || !this.order.tos) {
+      alert('订单起点与终点不能为空!');
+      return
+    }
+
     const modal = await this.modalController.create({
       component: OrderComponent,
       componentProps: {
