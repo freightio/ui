@@ -97,6 +97,8 @@ export class HomePage {
       const p1 = this.order.from.location.split(',');
       const p2 = this.order.tos[0].location.split(',');
       // 返回 p1 到 p2 间的地面距离，单位：米
+      console.log('hp1',p1);
+      console.log('hp2',p2);
       const dis = AMap.GeometryUtil.distance(p1, p2);
       //this.fee = dis * this.currentFreight.price / 1000;
       this.order.fee = (dis * this.currentFreight.price / 1000).toFixed(2);

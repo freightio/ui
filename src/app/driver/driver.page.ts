@@ -14,7 +14,7 @@ declare var AMap;
   templateUrl: './driver.page.html',
   styleUrls: ['./driver.page.scss'],
 })
-export class DriverPage {
+export class DriverPage implements OnInit {
   orders: any[];
   ordersClient = new OrdersClient(environment.apiUrl, null, null);
   currentLocation: any;
@@ -27,15 +27,15 @@ export class DriverPage {
       { 'sender': { 'name': '用户2' }, 'type': '大货车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 88.88 },
       { 'sender': { 'name': '用户3' }, 'type': '中货车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 99.99 }
     ];
-    this.geolocation.getCurrentPosition().then((resp) => {
-      //const positionInfo = [resp.coords.longitude + '', resp.coords.latitude + ''];
-      //console.log(positionInfo);
-      this.currentLocation = resp.coords;
-      this.load()
-    });
+    // this.geolocation.getCurrentPosition().then((resp) => {
+    //   const positionInfo = [resp.coords.longitude + '', resp.coords.latitude + ''];
+    //   console.log(positionInfo);
+    //   this.currentLocation = resp.coords;
+    //   this.load()
+    // });
   }
 
-  load() {
+  ngOnInit() {
     this.ordersClient.list(new Position(), { 'custom-header-1': 'value1' },
       (err: grpcWeb.Error, response: OrderList) => {
         for (var i in response.getItemsList()) {
@@ -93,29 +93,58 @@ export class DriverPage {
     await alert.present();
   }
 
-  distance(p2: any): number {
-    // const dis = AMap.GeometryUtil.distance(p1, p2);
-    // AMap.service('AMap.Geolocation', () => {
-    //   const geolocation = new AMap.Geolocation({});
-    //   //this.map.addControl(geolocation);
-    //   let value = geolocation.getCurrentPosition();
-    //   console.log(value);
-    //   alert(value);
-    // });
-    // this.geolocation.getCurrentPosition().then((resp) => {
-    //const positionInfo = [resp.coords.longitude + '', resp.coords.latitude + ''];
-    //console.log(positionInfo);
+  getDistance(p2: any): Promise<number> {
+    return this.geolocation.getCurrentPosition().then(res => {
+      // let latitude = res.coords.latitude.toString();  //纬度
+      // let longitude = res.coords.longitude.toString(); //经度
+      // let locations = { latitude: latitude, longitude: longitude };
+      // console.log(locations);
 
-    if (p2) {
-      let p1 = [-this.currentLocation.longitude, this.currentLocation.latitude]
-      console.log(p1);
-      p2=p2.split(',')
-      console.log(p2);
+
+      let p1 = ['' + res.coords.longitude, '' + res.coords.latitude]
+      console.log('p1', p1);
+      p2 = p2.split(',')
+      console.log('p2', p2);
       const dis = AMap.GeometryUtil.distance(p1, p2);
-      return Math.trunc(dis / 1000);
-    }
+      //return Math.trunc(dis / 1000);
+      return Promise.resolve(Math.trunc(dis / 1000));
+    }).catch(e => {
+      console.log(e);
+      return Promise.reject(0);
+    });
+  }
 
-    return 0;
-    // });
+
+  testDistance() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      console.log(resp.coords.latitude + ', ' + resp.coords.longitude);
+      alert(resp.coords);
+      //   AMap.service('AMap.Geocoder', () => {
+      //     const geocoder = new AMap.Geocoder({
+      //       // city: "010"
+      //     });
+      //     //console.log(geocoder, 'fuwu');
+      //     const positionInfo = [resp.coords.longitude + '', resp.coords.latitude + ''];
+      //     console.log(positionInfo);
+      //     geocoder.getAddress(positionInfo, (status, result) => {
+      //       console.log(status, result, '转换定位信息');
+      //       if (status === 'complete' && result.info === 'OK') {
+      //         // 获得了有效的地址信息:
+      //         console.log(result.regeocode.formattedAddress);
+      //         // console.log(result.addresscomponent.building);
+      //         // this.formattedAddress = result.regeocode.formattedAddress;
+      //       } else {
+      //         // 获取地址失败
+      //         console.log('获取地址失败');
+      //       }
+      //     });
+      //   });
+      // }).catch((error) => {
+      //   console.log('Error getting location', error);
+      // });
+
+
+      // return 0;
+    });
   }
 }
