@@ -1,15 +1,27 @@
 <ion-header>
   <ion-toolbar color="success">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>
-      List
+      货运订单
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-segment scrollable>
+    <ion-segment-button value="friends">
+      进行中
+    </ion-segment-button>
+    <ion-segment-button value="enemies">
+      已完成
+    </ion-segment-button>
+    <ion-segment-button value="enemies2">
+      已取消
+    </ion-segment-button>
+  </ion-segment>
+
   <ion-list>
     <ion-item *ngFor="let item of items">
       <ion-icon [name]="item.icon" slot="start"></ion-icon>
@@ -19,9 +31,4 @@
       </div>
     </ion-item>
   </ion-list>
-  <!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
-    </div>
-  -->
 </ion-content>
