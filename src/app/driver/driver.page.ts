@@ -117,7 +117,7 @@ export class DriverPage implements OnInit {
 
   testDistance() {
     this.geolocation.getCurrentPosition().then((resp) => {
-      console.log(resp.coords.latitude + ', ' + resp.coords.longitude);
+      // console.log(resp.coords.latitude + ', ' + resp.coords.longitude);
       alert(resp.coords.latitude + ', ' + resp.coords.longitude);
       //   AMap.service('AMap.Geocoder', () => {
       //     const geocoder = new AMap.Geocoder({
