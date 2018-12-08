@@ -1,21 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { environment } from '../../environments/environment';
 import * as grpcWeb from 'grpc-web';
 import { OrdersClient } from '../../sdk/order_grpc_web_pb';
 import { Order, OrderList, Position } from '../../sdk/order_pb';
 
 //declare var proto;
+declare var AMap;
 
 @Component({
   selector: 'app-driver',
   templateUrl: './driver.page.html',
   styleUrls: ['./driver.page.scss'],
 })
-export class DriverPage implements OnInit {
+export class DriverPage {
   orders: any[];
   ordersClient = new OrdersClient(environment.apiUrl, null, null);
+  currentLocation: any;
   constructor(
+    private geolocation: Geolocation,
     private alertController: AlertController
   ) {
     this.orders = [
@@ -23,9 +27,15 @@ export class DriverPage implements OnInit {
       { 'sender': { 'name': '用户2' }, 'type': '大货车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 88.88 },
       { 'sender': { 'name': '用户3' }, 'type': '中货车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 99.99 }
     ];
+    this.geolocation.getCurrentPosition().then((resp) => {
+      //const positionInfo = [resp.coords.longitude + '', resp.coords.latitude + ''];
+      //console.log(positionInfo);
+      this.currentLocation = resp.coords;
+      this.load()
+    });
   }
 
-  ngOnInit() {
+  load() {
     this.ordersClient.list(new Position(), { 'custom-header-1': 'value1' },
       (err: grpcWeb.Error, response: OrderList) => {
         for (var i in response.getItemsList()) {
@@ -81,5 +91,31 @@ export class DriverPage implements OnInit {
       ]
     });
     await alert.present();
+  }
+
+  distance(p2: any): number {
+    // const dis = AMap.GeometryUtil.distance(p1, p2);
+    // AMap.service('AMap.Geolocation', () => {
+    //   const geolocation = new AMap.Geolocation({});
+    //   //this.map.addControl(geolocation);
+    //   let value = geolocation.getCurrentPosition();
+    //   console.log(value);
+    //   alert(value);
+    // });
+    // this.geolocation.getCurrentPosition().then((resp) => {
+    //const positionInfo = [resp.coords.longitude + '', resp.coords.latitude + ''];
+    //console.log(positionInfo);
+
+    if (p2) {
+      let p1 = [-this.currentLocation.longitude, this.currentLocation.latitude]
+      console.log(p1);
+      p2=p2.split(',')
+      console.log(p2);
+      const dis = AMap.GeometryUtil.distance(p1, p2);
+      return Math.trunc(dis / 1000);
+    }
+
+    return 0;
+    // });
   }
 }

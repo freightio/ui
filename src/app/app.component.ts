@@ -23,12 +23,12 @@ export class AppComponent {
     },
     {
       title: '我的钱包',
-      url: '/driver',
+      url: '/wallet',
       icon: 'briefcase'
     },
     {
       title: '更多设置',
-      url: '/driver',
+      url: '/settings',
       icon: 'settings'
     }
   ];

@@ -18,7 +18,9 @@ const routes: Routes = [
   {
     path: 'driver',
     loadChildren: './driver/driver.module#DriverPageModule'
-  }
+  },
+  { path: 'wallet', loadChildren: './wallet/wallet.module#WalletPageModule' },
+  { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' }
 ];
 
 @NgModule({

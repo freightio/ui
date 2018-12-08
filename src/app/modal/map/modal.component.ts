@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+
 declare var AMap;
 
 @Component({
@@ -28,6 +29,7 @@ export class ModalComponent implements OnInit {
       cw.postMessage('hello', '*');
       // };
       window.addEventListener('message', (e) => {
+        console.log(e.data);
         this.modalController.dismiss(e.data);
       }, false);
     }, 2000);
