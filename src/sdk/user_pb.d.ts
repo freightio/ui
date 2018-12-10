@@ -4,10 +4,14 @@ export class User {
   setId(a: string): void;
   getName(): string;
   setName(a: string): void;
+  getPassword(): string;
+  setPassword(a: string): void;
   getTel(): string;
   setTel(a: string): void;
   getCreated(): number;
   setCreated(a: number): void;
+  getSign(): string;
+  setSign(a: string): void;
   getAnnotationsList(): User.AnnotationsEntry[];
   setAnnotationsList(a: User.AnnotationsEntry[]): void;
   toObject(): User.AsObject;
@@ -19,8 +23,10 @@ export namespace User {
   export type AsObject = {
     Id: string;
     Name: string;
+    Password: string;
     Tel: string;
     Created: number;
+    Sign: string;
     AnnotationsList: User.AnnotationsEntry[];
   }
   export type AnnotationsEntry = UserAnnotationsEntry;

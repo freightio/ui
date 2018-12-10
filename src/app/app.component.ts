@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { Platform, PopoverController, Events } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { Platform, MenuController, Events } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { LoginComponent } from './login/login.component';
+//import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -38,7 +39,9 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private popoverController: PopoverController
+    private router: Router,
+    public menuCtrl: MenuController
+   // private popoverController: PopoverController
   ) {
     this.initializeApp();
   }
@@ -52,12 +55,14 @@ export class AppComponent {
   }
 
   async login(ev: any) {
-    const popover = await this.popoverController.create({
-      component: LoginComponent,
-      event: ev,
-      translucent: true
-    });
-    return await popover.present();
+    // const popover = await this.popoverController.create({
+    //   component: LoginComponent,
+    //   event: ev,
+    //   translucent: true
+    // });
+    // return await popover.present();
+    this.router.navigateByUrl('/login');
+    this.menuCtrl.close();
   }
 
   listenForLoginEvents() {
