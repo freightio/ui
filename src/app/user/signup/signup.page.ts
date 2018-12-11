@@ -1,7 +1,9 @@
+import * as grpcWeb from 'grpc-web';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../../sdk/user_pb';
 import { UsersClient } from '../../../sdk/user_grpc_web_pb';
-import { User, UserRequest } from '../../../sdk/user_pb';
+import { environment } from '../../../environments/environment';
 
 declare var proto;
 
@@ -13,6 +15,7 @@ declare var proto;
 
 export class SignupPage implements OnInit {
   user: any;
+  userClient = new UsersClient(environment.apiUrl, null, null);
   constructor(private router: Router) {
     const tsUser = new User();
     this.user = new proto.backend.User();
@@ -26,7 +29,13 @@ export class SignupPage implements OnInit {
   }
 
   signup() {
-    alert(this.user.tel + ':' + this.user.name);
-    // this.router.navigateByUrl('/signup');
+    //alert(this.user.tel + ':' + this.user.name);
+    const tsUser = new User();
+    tsUser.setName(this.user.name);
+    tsUser.setTel(this.user.tel);
+    tsUser.setPassword(this.user.password);
+    this.userClient.add(tsUser, {}, (err: grpcWeb.Error, response: User) => {
+      console.log(response);
+    })
   }
 }
