@@ -29,12 +29,16 @@ export class SignupPage implements OnInit {
   }
 
   signup() {
-    //alert(this.user.tel + ':' + this.user.name);
     const tsUser = new User();
     tsUser.setName(this.user.name);
     tsUser.setTel(this.user.tel);
     tsUser.setPassword(this.user.password);
     this.userClient.add(tsUser, {}, (err: grpcWeb.Error, response: User) => {
+      if (err) {
+        alert(err.message);
+      } else {
+        this.router.navigateByUrl('/login');
+      }
       console.log(response);
     })
   }

@@ -33,7 +33,7 @@ export class DriverPage implements OnInit {
     //this.geolocation.getCurrentPosition().then((resp) => {
     //  let positon = new Position()
     //  positon.setLocation(resp.coords.latitude + ',' + resp.coords.longitude);
-    this.ordersClient.list(new Position(), { 'custom-header-1': 'value1' },
+    this.ordersClient.listByPositon(new Position(), { 'custom-header-1': 'value1' },
       (err: grpcWeb.Error, response: OrderList) => {
         for (var i in response.getItemsList()) {
           let tsOrder = response.getItemsList()[i]
@@ -67,7 +67,7 @@ export class DriverPage implements OnInit {
     this.ngOnInit();
     setTimeout(() => {
       event.target.complete();
-    }, 2000);
+    }, 1000);
   }
 
   async showUserDetail(order) {
@@ -87,6 +87,7 @@ export class DriverPage implements OnInit {
             let tsOrder = new Order();
             tsOrder.setId(order.id)
             tsOrder.setStatus('accept');
+            tsOrder.setDriverid(window.localStorage.getItem('userId'));
             this.ordersClient.update(tsOrder, { 'custom-header-1': 'value1' },
               (err: grpcWeb.Error, response: Order) => {
                 console.log(response);

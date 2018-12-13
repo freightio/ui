@@ -11,6 +11,7 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
+var user_pb = require('./user_pb.js');
 goog.exportSymbol('proto.backend.Order', null, global);
 goog.exportSymbol('proto.backend.OrderList', null, global);
 goog.exportSymbol('proto.backend.OrderRequest', null, global);

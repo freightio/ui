@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  username = '';
+  tel = '';
   password = '';
   userClient = new UsersClient(environment.apiUrl, null, null);
   constructor(
@@ -24,16 +24,17 @@ export class LoginPage implements OnInit {
 
   login() {
     const tsUser = new User();
-    tsUser.setTel(this.username);
+    tsUser.setTel(this.tel);
     tsUser.setPassword(this.password);
     this.userClient.login(tsUser, {}, (err: grpcWeb.Error, response: User) => {
       if (err) {
         console.log(err.code, err.message);
-        alert('手机号码或密码不正确!');
+        alert('手机号或密码不正确.');
         return
       } else {
-        window.localStorage.setItem('username', this.username);
-        this.events.publish('user:login', this.username);
+        console.log(this.tel)
+        window.localStorage.setItem('userId', this.tel);
+        this.events.publish('user:login', response.getName());
         this.router.navigateByUrl('/home');
       }
       console.log(response);

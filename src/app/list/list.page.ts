@@ -1,6 +1,7 @@
 import * as grpcWeb from 'grpc-web';
-import { GreeterClient } from '../../sdk/helloworld_grpc_web_pb';
-import { HelloRequest, HelloReply } from '../../sdk/helloworld_pb';
+import { OrdersClient } from '../../sdk/order_grpc_web_pb';
+import { OrderList } from '../../sdk/order_pb';
+import { User } from '../../sdk/user_pb';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 
@@ -10,43 +11,48 @@ import { environment } from '../../environments/environment';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
+  orders: any;
+  ordersClient = new OrdersClient(environment.apiUrl, null, null);
   constructor() {
-    for (let i = 1; i < 6; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
-
-    const client = new GreeterClient(environment.apiUrl, null, null);
-    console.log(client);
-    const request = new HelloRequest()
-    request.setName("super-man");
-    const call = client.sayHello(request, { 'custom-header-1': 'value1' },
-      (err: grpcWeb.Error, response: HelloReply) => {
-        console.log(response.getMessage());
-      });
-    call.on('status', (status: grpcWeb.Status) => {
-      console.log(status);
-    });
+    this.orders = [{}];
   }
 
   ngOnInit() {
+    const tsUser = new User();
+    tsUser.setTel(window.localStorage.getItem('userId'));
+    this.ordersClient.listByUser(tsUser, { 'custom-header-1': 'value1' },
+      (err: grpcWeb.Error, response: OrderList) => {
+        if (err) {
+          console.log(err);
+        } else {
+          for (var i in response.getItemsList()) {
+            console.log(i, response.getItemsList()[i])
+            let tsOrder = response.getItemsList()[i]
+            this.orders[i] = tsOrder.toObject();
+            if (tsOrder.getSender() != null) {
+              this.orders[i].sender = tsOrder.getSender().toObject();
+            }
+            if (tsOrder.getFrom() != null) {
+              this.orders[i].from = tsOrder.getFrom().toObject();
+            }
+            if (tsOrder.getTosList()[0] != null) {
+              this.orders[i].to = tsOrder.getTosList()[0].toObject();
+            }
+            this.orders[i].fee = tsOrder.getFee().toFixed(2);
+            // let a = <Order>response.getItemsList()[i];
+            // let order = new proto.backend.Order();
+            // order.time = a.getId();
+            // order.contact = a.getContact();
+            // order.from = a.getFrom();
+            // order.tos = a.getTosList();
+            // order.type = a.getType();
+            // order.fee = a .getFee();
+            // this.orders[i] = order;
+          };
+        }
+
+        // this.loadDistance();
+      });
   }
   // add back when alpha.4 is out
   // navigate(item) {

@@ -24,13 +24,21 @@
     </ion-segment-button>
   </ion-segment>
 
-  <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-icon [name]="item.icon" slot="start"></ion-icon>
-      {{item.title}}
-      <div class="item-note" slot="end">
-        {{item.note}}
-      </div>
-    </ion-item>
-  </ion-list>
+  <ion-card *ngFor="let order of orders">
+    <ion-card-header>
+      <ion-card-subtitle>{{order.type}}</ion-card-subtitle>
+      <ion-item>
+        <ion-label>{{order.created | date:'yyyy,MM-dd HH:mm'}}</ion-label>
+        <ion-toggle slot="end" checked></ion-toggle>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        <ion-icon name="log-in"></ion-icon>{{order.from?.name}}
+      </p>
+      <p>
+        <ion-icon name="log-out"></ion-icon>{{order.to?.name}}
+      </p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

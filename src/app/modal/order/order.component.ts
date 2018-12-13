@@ -57,6 +57,8 @@ export class OrderComponent implements OnInit {
           const tsOrder = new Order();
 
           let sender = new Sender()
+          //empty if no-login
+          sender.setId(window.localStorage.getItem('userId'));
           sender.setName(this.person.name);
           sender.setTel(this.person.tel);
           tsOrder.setSender(sender);
