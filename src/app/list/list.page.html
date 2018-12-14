@@ -12,8 +12,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-segment scrollable>
-    <ion-segment-button value="friends">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-segment>
+    <ion-segment-button value="friends" checked>
       进行中
     </ion-segment-button>
     <ion-segment-button value="enemies">
@@ -34,10 +37,10 @@
     </ion-card-header>
     <ion-card-content>
       <p>
-        <ion-icon name="log-in"></ion-icon>{{order.from?.name}}
+        <ion-icon name="log-out"></ion-icon>{{order.from?.name}}
       </p>
       <p>
-        <ion-icon name="log-out"></ion-icon>{{order.to?.name}}
+        <ion-icon name="log-in"></ion-icon>{{order.to?.name}}
       </p>
     </ion-card-content>
   </ion-card>

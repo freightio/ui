@@ -14,12 +14,15 @@ export class ListPage implements OnInit {
   orders: any;
   ordersClient = new OrdersClient(environment.apiUrl, null, null);
   constructor() {
-    this.orders = [{}];
+    this.orders = [];
   }
 
   ngOnInit() {
     const tsUser = new User();
-    tsUser.setTel(window.localStorage.getItem('userId'));
+    let localUser = window.localStorage.getItem('user');
+    if (localUser) {
+      tsUser.setTel(JSON.parse(localUser).tel);
+    }
     this.ordersClient.listByUser(tsUser, { 'custom-header-1': 'value1' },
       (err: grpcWeb.Error, response: OrderList) => {
         if (err) {
@@ -58,4 +61,10 @@ export class ListPage implements OnInit {
   // navigate(item) {
   //   this.router.navigate(['/list', JSON.stringify(item)]);
   // }
+  refresh(event:any) {
+    this.ngOnInit();
+    setTimeout(() => {
+      event.target.complete();
+    }, 1000);
+  }
 }

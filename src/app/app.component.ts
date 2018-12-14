@@ -3,14 +3,13 @@ import { Router } from '@angular/router';
 import { Platform, MenuController, Events } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-//import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  username = 'Beckham';
+  username = '登录';
   public appPages = [
     {
       title: '首页',
@@ -41,9 +40,12 @@ export class AppComponent {
     private statusBar: StatusBar,
     private router: Router,
     public menuCtrl: MenuController
-   // private popoverController: PopoverController
   ) {
     this.initializeApp();
+    let localUser = window.localStorage.getItem('user');
+    if (localUser) {
+      this.username = JSON.parse(localUser).name;
+    }
   }
 
   initializeApp() {
@@ -55,12 +57,6 @@ export class AppComponent {
   }
 
   async login(ev: any) {
-    // const popover = await this.popoverController.create({
-    //   component: LoginComponent,
-    //   event: ev,
-    //   translucent: true
-    // });
-    // return await popover.present();
     this.router.navigateByUrl('/login');
     this.menuCtrl.close();
   }

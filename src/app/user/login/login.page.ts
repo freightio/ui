@@ -30,11 +30,10 @@ export class LoginPage implements OnInit {
       if (err) {
         console.log(err.code, err.message);
         alert('手机号或密码不正确.');
-        return
       } else {
-        console.log(this.tel)
-        window.localStorage.setItem('userId', this.tel);
-        this.events.publish('user:login', response.getName());
+        let username = response.getName();
+        this.events.publish('user:login', username);
+        window.localStorage.setItem('user', JSON.stringify(response.toObject()));
         this.router.navigateByUrl('/home');
       }
       console.log(response);
