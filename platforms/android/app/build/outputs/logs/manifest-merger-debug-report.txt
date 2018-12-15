@@ -145,20 +145,18 @@ INJECTED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/
 		ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:15:15-41
 		INJECTED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml
 		INJECTED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml
-uses-permission#android.permission.CAMERA
-ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:16:5-65
+uses-permission#android.permission.READ_CONTACTS
+ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:16:5-72
 	android:name
-		ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:16:22-62
-uses-permission#android.permission.FLASHLIGHT
-ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:17:5-69
+		ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:16:22-69
+uses-permission#android.permission.WRITE_CONTACTS
+ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:17:5-73
 	android:name
-		ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:17:22-66
-uses-feature#android.hardware.camera
-ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:18:5-84
-	android:required
-		ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:18:58-81
+		ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:17:22-70
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:18:5-71
 	android:name
-		ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:18:19-57
+		ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:18:22-68
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
 ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:19:5-81
 	android:name
@@ -171,15 +169,17 @@ uses-feature#android.hardware.location.gps
 ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:21:5-66
 	android:name
 		ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:21:19-63
-uses-permission#android.permission.READ_CONTACTS
-ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:22:5-72
+uses-permission#android.permission.CAMERA
+ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:22:5-65
 	android:name
-		ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:22:22-69
-uses-permission#android.permission.WRITE_CONTACTS
-ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:23:5-73
+		ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:22:22-62
+uses-permission#android.permission.FLASHLIGHT
+ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:23:5-69
 	android:name
-		ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:23:22-70
-uses-permission#android.permission.GET_ACCOUNTS
-ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:24:5-71
+		ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:23:22-66
+uses-feature#android.hardware.camera
+ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:24:5-84
+	android:required
+		ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:24:58-81
 	android:name
-		ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:24:22-68
+		ADDED from /home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/AndroidManifest.xml:24:19-57
