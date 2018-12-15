@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import * as grpcWeb from 'grpc-web';
 import { OrdersClient } from '../../../sdk/order_grpc_web_pb';
 import { Order, Position, Sender } from '../../../sdk/order_pb';
-
+declare let cordova;
 //declare var proto;
 
 @Component({
@@ -46,7 +46,8 @@ export class OrderComponent implements OnInit {
         icon: 'trash',
         handler: () => {
           console.log('Delete clicked');
-          alert('即将支持');
+          //alert('即将支持');
+          this.alipayFunc();
         }
       }, {
         text: '支付宝',
@@ -125,5 +126,15 @@ export class OrderComponent implements OnInit {
       }]
     });
     await actionSheet.present();
+  }
+
+  alipayFunc() {
+    cordova.plugins.alipay.payment('payInfo',
+      function success(e) {
+        alert(e);
+      },
+      function error(e) {
+        alert(e);
+      });
   }
 }

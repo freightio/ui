@@ -89,5 +89,8 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
     <plugin name="cordova-plugin-contacts" spec="3.0.1" />
+    <plugin name="cordova-plugin-alipay-v2" spec="1.0.0">
+        <variable name="APP_ID" value="2018111462164393" />
+    </plugin>
     <engine name="android" spec="7.1.4" />
 </widget>
