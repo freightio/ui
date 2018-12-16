@@ -37,7 +37,7 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"alipay\"><param name=\"android-package\" value=\"cn.hhjjj.alipay.alipay\" /></feature>",
+              "xml": "<feature name=\"Alipay\"><param name=\"android-package\" value=\"org.apache.cordova.ali.Alipay\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
             }
           ]
@@ -79,10 +79,6 @@
             {
               "xml": "<activity android:configChanges=\"orientation|keyboardHidden|navigation|screenSize\" android:exported=\"false\" android:name=\"com.alipay.sdk.app.H5PayActivity\" android:screenOrientation=\"behind\" android:windowSoftInputMode=\"adjustResize|stateHidden\"></activity>",
               "count": 1
-            },
-            {
-              "xml": "<activity android:configChanges=\"orientation|keyboardHidden|navigation\" android:exported=\"false\" android:name=\"com.alipay.sdk.app.H5AuthActivity\" android:screenOrientation=\"behind\" android:windowSoftInputMode=\"adjustResize|stateHidden\"></activity>",
-              "count": 1
             }
           ],
           "/manifest": [
@@ -96,6 +92,26 @@
             },
             {
               "xml": "<uses-feature android:name=\"android.hardware.camera\" android:required=\"true\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
               "count": 1
             }
           ],
@@ -122,26 +138,6 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
               "count": 1
             }
           ]
@@ -179,7 +175,7 @@
     "cordova-plugin-contacts": {
       "PACKAGE_NAME": "io.freight.starter"
     },
-    "cordova-plugin-alipay-v2": {
+    "cordova-plugin-gubnoi-alipay": {
       "APP_ID": "2018111762227213",
       "PACKAGE_NAME": "io.freight.starter"
     }
@@ -326,11 +322,11 @@
       ]
     },
     {
-      "id": "cordova-plugin-alipay-v2.alipay",
-      "file": "plugins/cordova-plugin-alipay-v2/www/alipay.js",
-      "pluginId": "cordova-plugin-alipay-v2",
+      "id": "cordova-plugin-gubnoi-alipay.Alipay",
+      "file": "plugins/cordova-plugin-gubnoi-alipay/www/alipay.js",
+      "pluginId": "cordova-plugin-gubnoi-alipay",
       "clobbers": [
-        "cordova.plugins.alipay"
+        "cordova.plugins.ali"
       ]
     }
   ],
@@ -344,6 +340,6 @@
     "phonegap-plugin-barcodescanner": "8.0.1",
     "cordova-plugin-geolocation": "4.0.1",
     "cordova-plugin-contacts": "3.0.1",
-    "cordova-plugin-alipay-v2": "1.0.0"
+    "cordova-plugin-gubnoi-alipay": "0.0.4"
   }
 }

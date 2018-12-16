@@ -24,8 +24,9 @@
     <feature name="Contacts">
         <param name="android-package" value="org.apache.cordova.contacts.ContactManager" />
     </feature>
-    <feature name="alipay">
-        <param name="android-package" value="cn.hhjjj.alipay.alipay" />
+    <feature name="Alipay">
+        <param name="android-package" value="org.apache.cordova.ali.Alipay" />
+        <param name="onload" value="true" />
     </feature>
     <allow-navigation href="http://localhost:8080/*" />
     <feature name="IonicWebView">
