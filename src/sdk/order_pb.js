@@ -84,6 +84,7 @@ proto.backend.Order.toObject = function(includeInstance, msg) {
     created: jspb.Message.getFieldWithDefault(msg, 8, 0),
     driverid: jspb.Message.getFieldWithDefault(msg, 9, ""),
     status: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    comment: jspb.Message.getFieldWithDefault(msg, 11, ""),
     payinfo: (f = msg.getPayinfo()) && proto.backend.PayInfo.toObject(includeInstance, f)
   };
 
@@ -167,6 +168,10 @@ proto.backend.Order.deserializeBinaryFromReader = function(msg, reader) {
       msg.setStatus(value);
       break;
     case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setComment(value);
+      break;
+    case 12:
       var value = new proto.backend.PayInfo;
       reader.readMessage(value,proto.backend.PayInfo.deserializeBinaryFromReader);
       msg.setPayinfo(value);
@@ -270,10 +275,17 @@ proto.backend.Order.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getComment();
+  if (f.length > 0) {
+    writer.writeString(
+      11,
+      f
+    );
+  }
   f = message.getPayinfo();
   if (f != null) {
     writer.writeMessage(
-      11,
+      12,
       f,
       proto.backend.PayInfo.serializeBinaryToWriter
     );
@@ -481,18 +493,33 @@ proto.backend.Order.prototype.setStatus = function(value) {
 
 
 /**
- * optional PayInfo payInfo = 11;
+ * optional string comment = 11;
+ * @return {string}
+ */
+proto.backend.Order.prototype.getComment = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/** @param {string} value */
+proto.backend.Order.prototype.setComment = function(value) {
+  jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional PayInfo payInfo = 12;
  * @return {?proto.backend.PayInfo}
  */
 proto.backend.Order.prototype.getPayinfo = function() {
   return /** @type{?proto.backend.PayInfo} */ (
-    jspb.Message.getWrapperField(this, proto.backend.PayInfo, 11));
+    jspb.Message.getWrapperField(this, proto.backend.PayInfo, 12));
 };
 
 
 /** @param {?proto.backend.PayInfo|undefined} value */
 proto.backend.Order.prototype.setPayinfo = function(value) {
-  jspb.Message.setWrapperField(this, 11, value);
+  jspb.Message.setWrapperField(this, 12, value);
 };
 
 
@@ -506,7 +533,7 @@ proto.backend.Order.prototype.clearPayinfo = function() {
  * @return {!boolean}
  */
 proto.backend.Order.prototype.hasPayinfo = function() {
-  return jspb.Message.getField(this, 11) != null;
+  return jspb.Message.getField(this, 12) != null;
 };
 
 

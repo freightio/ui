@@ -92,7 +92,6 @@ export class DriverPage implements OnInit {
             let tsOrder = new Order();
             tsOrder.setId(order.id)
             tsOrder.setStatus('accept');
-
             tsOrder.setDriverid(JSON.parse(localUser).id);
             this.ordersClient.update(tsOrder, { 'custom-header-1': 'value1' },
               (err: grpcWeb.Error, response: Order) => {
@@ -113,11 +112,10 @@ export class DriverPage implements OnInit {
         let p2 = order.from.location.split(',')
         console.log('p2', p2);
         const dis = AMap.GeometryUtil.distance(p1, p2);
-        let ndis = Math.trunc(dis / 1000);
         if (!order.annotations) {
           order.annotations = new Map();
         }
-        order.annotations.set('distance', ndis);
+        order.annotations.set('distance', Math.trunc(dis / 1000));
       }
     }).catch(e => {
       console.log(e);

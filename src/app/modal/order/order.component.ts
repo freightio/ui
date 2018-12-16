@@ -6,8 +6,8 @@ import * as grpcWeb from 'grpc-web';
 import { OrdersClient } from '../../../sdk/order_grpc_web_pb';
 import { Order, Position, Sender, SignReply, PayInfo } from '../../../sdk/order_pb';
 
-declare let cordova: any;
-//declare var proto;
+declare let cordova;
+declare var proto;
 
 @Component({
   selector: 'app-order',
@@ -16,7 +16,6 @@ declare let cordova: any;
 })
 export class OrderComponent implements OnInit {
   order = this.navParams.get('order');
-  person = { 'name': '', 'tel': '' };
   ordersClient = new OrdersClient(environment.apiUrl, null, null);
 
   constructor(
@@ -30,12 +29,13 @@ export class OrderComponent implements OnInit {
     let created = new Date();
     created.setMinutes(created.getMinutes() + 5);
     this.order.created = created.getTime();
+    this.order.sender = new proto.backend.Sender();
   }
 
   selectContact() {
     this.contacts.pickContact().then(e => {
-      this.person.name = e.displayName;
-      this.person.tel = e.phoneNumbers[0].value;
+      this.order.sender.name = e.displayName;
+      this.order.sender.tel = e.phoneNumbers[0].value;
     });
   }
 
@@ -122,10 +122,12 @@ export class OrderComponent implements OnInit {
   saveToDB(payInfo: PayInfo) {
     const tsOrder = new Order();
     let sender = new Sender()
-    //empty if no-login
-    sender.setId(window.localStorage.getItem('userId'));
-    sender.setName(this.person.name);
-    sender.setTel(this.person.tel);
+    let localUser = window.localStorage.getItem('user');
+    if (localUser) {
+      sender.setId(JSON.parse(localUser).id);
+    }
+    sender.setName(this.order.sender.name);
+    sender.setTel(this.order.sender.tel);
     tsOrder.setSender(sender);
 
     let from = new Position();
@@ -142,17 +144,13 @@ export class OrderComponent implements OnInit {
     tsOrder.setType(this.order.type);
     tsOrder.setFee(this.order.fee);
     tsOrder.setCreated(this.order.created);
+    tsOrder.setComment(this.order.comment);
     tsOrder.setPayinfo(payInfo);
-    const call = this.ordersClient.add(tsOrder, { 'custom-header-1': 'value1' },
+    this.ordersClient.add(tsOrder, { 'custom-header-1': 'value1' },
       (err: grpcWeb.Error, response: Order) => {
         console.log(err);
         console.log(response);
         this.modalController.dismiss();
       });
-    call.on('status', (status: grpcWeb.Status) => {
-      console.log(status); call.on('status', (status: grpcWeb.Status) => {
-        console.log(status);
-      });
-    });
   }
 }

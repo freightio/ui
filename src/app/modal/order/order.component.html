@@ -24,16 +24,16 @@
         <ion-col size="10">
           <ion-item class="activated">
             <ion-icon name="person" slot="start"></ion-icon>
-            <ion-input [(ngModel)]="person.name"></ion-input>
+            <ion-input [(ngModel)]="order.sender.name"></ion-input>
           </ion-item>
           <ion-item class="activated">
             <ion-icon name="call" slot="start"></ion-icon>
-            <ion-input [(ngModel)]="person.tel"></ion-input>
+            <ion-input [(ngModel)]="order.sender.tel"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col align-self-center style="text-align: center;" (click)="selectContact()">
           <ion-icon name="contact"></ion-icon>
-          <br/> 通讯录
+          <br /> 通讯录
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -52,7 +52,7 @@
         备注
       </ion-avatar>
       <div>
-        <ion-textarea rows="3"></ion-textarea>
+        <ion-textarea rows="3" [(ngModel)]="order.comment"></ion-textarea>
       </div>
     </ion-item>
   </ion-card>

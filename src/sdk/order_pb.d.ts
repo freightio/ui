@@ -20,6 +20,8 @@ export class Order {
   setDriverid(a: string): void;
   getStatus(): string;
   setStatus(a: string): void;
+  getComment(): string;
+  setComment(a: string): void;
   getPayinfo(): PayInfo;
   setPayinfo(a: PayInfo): void;
   toObject(): Order.AsObject;
@@ -39,6 +41,7 @@ export namespace Order {
     Created: number;
     Driverid: string;
     Status: string;
+    Comment: string;
     Payinfo: PayInfo;
   }
   export type AnnotationsEntry = OrderAnnotationsEntry;
