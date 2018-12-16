@@ -131,7 +131,7 @@ export class OrderComponent implements OnInit {
 
   alipayFunc() {
     let tsOrder = new Order();
-    tsOrder.setFee(666);
+    tsOrder.setFee(0.06);
     const call = this.ordersClient.signAlipay(tsOrder, { 'custom-header-1': 'value1' },
       (err: grpcWeb.Error, response: SignReply) => {
         if (err) {
@@ -140,10 +140,10 @@ export class OrderComponent implements OnInit {
           alert(response.getSigned());
           cordova.plugins.alipay.payment(response.getSigned(),
             function success(e) {
-              alert(e);
+              alert('success:' + e.code + e.message);
             },
             function error(e) {
-              alert(e);
+              alert('error:' + e.code + e.message);
             });
         }
       });
