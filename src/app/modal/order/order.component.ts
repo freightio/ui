@@ -141,10 +141,10 @@ export class OrderComponent implements OnInit {
           alert(payInfo);
           cordova.plugins.alipay.payment(payInfo, (success) => {
             console.log(success);
-            alert(success);
+            alert('ok:' + success.resultStatus + success.result);
           }, (error) => {
             console.log(error);
-            alert(error);
+            alert('error:' + error.resultStatus + error.result);
           });
           // cordova.plugins.ali.Alipay.pay(payInfo,
           //   function success(e) {

@@ -45,7 +45,7 @@
               "count": 1
             },
             {
-              "xml": "<preference name=\"SANDBOX_MODE\" value=\"true\" />",
+              "xml": "<preference name=\"SANDBOX_MODE\" value=\"false\" />",
               "count": 1
             }
           ]
@@ -185,7 +185,7 @@
     },
     "cordova-plugin-alipay": {
       "APP_ID": "2018111762227213",
-      "SANDBOX_MODE": "true",
+      "SANDBOX_MODE": "false",
       "PACKAGE_NAME": "io.freight.starter"
     }
   },

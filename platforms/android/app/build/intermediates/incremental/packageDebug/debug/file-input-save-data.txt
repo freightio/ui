@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sun Dec 16 15:31:20 CST 2018
+#Sun Dec 16 15:46:22 CST 2018
 1034.base=/home/daniel/go/src/github.com/freightio/ui/platforms/android/app/build/intermediates/assets/debug
 881.path=www/svg/md-transgender.svg
 508.set=ASSET

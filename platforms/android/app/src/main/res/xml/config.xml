@@ -66,7 +66,7 @@
     <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="APP_ID" value="2018111762227213" />
-    <preference name="SANDBOX_MODE" value="true" />
+    <preference name="SANDBOX_MODE" value="false" />
     <preference name="webView" value="com.ionicframework.cordova.webview.IonicWebViewEngine" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />

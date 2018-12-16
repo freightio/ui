@@ -91,7 +91,7 @@
     <plugin name="cordova-plugin-contacts" spec="3.0.1" />
     <plugin name="cordova-plugin-alipay" spec="https://github.com/ejiyuan/cordova-plugin-alipay.git">
         <variable name="APP_ID" value="2018111762227213" />
-        <variable name="SANDBOX_MODE" value="true" />
+        <variable name="SANDBOX_MODE" value="false" />
     </plugin>
     <engine name="android" spec="7.1.4" />
 </widget>

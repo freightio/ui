@@ -96,7 +96,7 @@
       "cordova-plugin-contacts": {},
       "cordova-plugin-alipay": {
         "APP_ID": "2018111762227213",
-        "SANDBOX_MODE": "true"
+        "SANDBOX_MODE": "false"
       }
     },
     "platforms": [
