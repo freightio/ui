@@ -137,7 +137,7 @@ export class OrderComponent implements OnInit {
         if (err) {
           alert(err.message)
         } {
-          alert(response);
+          alert(response.getSigned());
           cordova.plugins.alipay.payment(response.getSigned(),
             function success(e) {
               alert(e);

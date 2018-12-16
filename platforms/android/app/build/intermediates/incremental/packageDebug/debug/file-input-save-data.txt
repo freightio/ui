@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sun Dec 16 12:00:09 CST 2018
+#Sun Dec 16 13:11:24 CST 2018
 1034.base=/home/daniel/go/src/github.com/freightio/ui/platforms/android/app/build/intermediates/assets/debug
 881.path=www/assets/img/to.png
 508.set=ASSET
