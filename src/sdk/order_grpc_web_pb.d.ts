@@ -6,6 +6,7 @@ import {
   OrderRequest,
   Position,
   Sender,
+  SignReply,
   User} from './order_pb';
 
 export class OrdersClient {
@@ -55,6 +56,13 @@ export class OrdersClient {
                response: Order) => void
   ): grpcWeb.ClientReadableStream<Order>;
 
+  signAlipay(
+    request: Order,
+    metadata: grpcWeb.Metadata,
+    callback: (err: grpcWeb.Error,
+               response: SignReply) => void
+  ): grpcWeb.ClientReadableStream<SignReply>;
+
 }
 
 export class OrdersPromiseClient {
@@ -91,6 +99,11 @@ export class OrdersPromiseClient {
     request: OrderRequest,
     metadata: grpcWeb.Metadata
   ): Promise<Order>;
+
+  signAlipay(
+    request: Order,
+    metadata: grpcWeb.Metadata
+  ): Promise<SignReply>;
 
 }
 

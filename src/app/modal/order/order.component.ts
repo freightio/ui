@@ -4,8 +4,9 @@ import { Contacts } from '@ionic-native/contacts/ngx';
 import { environment } from '../../../environments/environment';
 import * as grpcWeb from 'grpc-web';
 import { OrdersClient } from '../../../sdk/order_grpc_web_pb';
-import { Order, Position, Sender } from '../../../sdk/order_pb';
-declare let cordova;
+import { Order, Position, Sender, SignReply } from '../../../sdk/order_pb';
+
+declare let cordova:any;
 //declare var proto;
 
 @Component({
@@ -16,6 +17,7 @@ declare let cordova;
 export class OrderComponent implements OnInit {
   order = this.navParams.get('order');
   person = { 'name': '', 'tel': '' };
+  ordersClient = new OrdersClient(environment.apiUrl, null, null);
 
   constructor(
     private navParams: NavParams,
@@ -54,7 +56,6 @@ export class OrderComponent implements OnInit {
         icon: 'share',
         handler: () => {
           console.log('==', this.order);
-          const ordersClient = new OrdersClient(environment.apiUrl, null, null);
           const tsOrder = new Order();
 
           let sender = new Sender()
@@ -78,7 +79,7 @@ export class OrderComponent implements OnInit {
           tsOrder.setType(this.order.type);
           tsOrder.setFee(this.order.fee);
           tsOrder.setCreated(this.order.created);
-          const call = ordersClient.add(tsOrder, { 'custom-header-1': 'value1' },
+          const call = this.ordersClient.add(tsOrder, { 'custom-header-1': 'value1' },
             (err: grpcWeb.Error, response: Order) => {
               console.log(err);
               console.log(response);
@@ -129,12 +130,20 @@ export class OrderComponent implements OnInit {
   }
 
   alipayFunc() {
-    cordova.plugins.alipay.payment('payInfo',
-      function success(e) {
-        alert(e);
-      },
-      function error(e) {
-        alert(e);
+    let tsOrder = new Order();
+    tsOrder.setFee(666);
+    const call = this.ordersClient.signAlipay(tsOrder, { 'custom-header-1': 'value1' },
+      (err: grpcWeb.Error, response: SignReply) => {
+        console.log(err);
+        console.log(response);
+        cordova.plugins.alipay.payment(response.getSigned(),
+          function success(e) {
+            alert(e);
+          },
+          function error(e) {
+            alert(e);
+          });
       });
+
   }
 }

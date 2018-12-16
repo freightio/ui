@@ -149,6 +149,21 @@ export namespace Sender {
   }
 }
 
+export class SignReply {
+  constructor ();
+  getSigned(): string;
+  setSigned(a: string): void;
+  toObject(): SignReply.AsObject;
+  serializeBinary(): Uint8Array;
+  static deserializeBinary: (bytes: {}) => SignReply;
+}
+
+export namespace SignReply {
+  export type AsObject = {
+    Signed: string;
+  }
+}
+
 export class User {
   constructor ();
   getId(): string;
