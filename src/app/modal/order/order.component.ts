@@ -48,48 +48,14 @@ export class OrderComponent implements OnInit {
         icon: 'trash',
         handler: () => {
           console.log('Delete clicked');
-          //alert('即将支持');
-          this.alipayFunc();
+          alert('即将支持');
         }
       }, {
         text: '支付宝',
         icon: 'share',
         handler: () => {
           console.log('==', this.order);
-          const tsOrder = new Order();
-
-          let sender = new Sender()
-          //empty if no-login
-          sender.setId(window.localStorage.getItem('userId'));
-          sender.setName(this.person.name);
-          sender.setTel(this.person.tel);
-          tsOrder.setSender(sender);
-
-          let from = new Position();
-          from.setName(this.order.from.name);
-          from.setLocation(this.order.from.location);
-          from.setAddress(this.order.from.address);
-          tsOrder.setFrom(from);
-
-          let to = new Position();
-          to.setName(this.order.tos[0].name);
-          to.setLocation(this.order.tos[0].location);
-          to.setAddress(this.order.tos[0].address);
-          tsOrder.setTosList([to])
-          tsOrder.setType(this.order.type);
-          tsOrder.setFee(this.order.fee);
-          tsOrder.setCreated(this.order.created);
-          const call = this.ordersClient.add(tsOrder, { 'custom-header-1': 'value1' },
-            (err: grpcWeb.Error, response: Order) => {
-              console.log(err);
-              console.log(response);
-              this.modalController.dismiss();
-            });
-          call.on('status', (status: grpcWeb.Status) => {
-            console.log(status); call.on('status', (status: grpcWeb.Status) => {
-              console.log(status);
-            });
-          });
+          this.goToAlipay();
         }
       }, {
         text: '微信',
@@ -129,31 +95,60 @@ export class OrderComponent implements OnInit {
     await actionSheet.present();
   }
 
-  alipayFunc() {
+  goToAlipay() {
     let tsOrder = new Order();
-    tsOrder.setFee(0.06);
-    const call = this.ordersClient.signAlipay(tsOrder, { 'custom-header-1': 'value1' },
+    tsOrder.setFee(this.order.fee);
+    this.ordersClient.signAlipay(tsOrder, { 'custom-header-1': 'value1' },
       (err: grpcWeb.Error, response: SignReply) => {
         if (err) {
           alert(err.message)
         } {
           let payInfo = response.getSigned();
-          alert(payInfo);
           cordova.plugins.alipay.payment(payInfo, (success) => {
             console.log(success);
-            alert('ok:' + success.resultStatus + success.result);
+            alert('success:' + JSON.stringify(success));
+            this.saveToDB();
           }, (error) => {
             console.log(error);
-            alert('error:' + error.resultStatus + error.result);
+            alert('error:' + JSON.stringify(error));
           });
-          // cordova.plugins.ali.Alipay.pay(payInfo,
-          //   function success(e) {
-          //     alert('ok:' + e.resultStatus + e.result);
-          //   },
-          //   function error(e) {
-          //     alert('error:' + e.resultStatus + e.result);
-          //   });
         }
       });
+  }
+
+  saveToDB() {
+    const tsOrder = new Order();
+    let sender = new Sender()
+    //empty if no-login
+    sender.setId(window.localStorage.getItem('userId'));
+    sender.setName(this.person.name);
+    sender.setTel(this.person.tel);
+    tsOrder.setSender(sender);
+
+    let from = new Position();
+    from.setName(this.order.from.name);
+    from.setLocation(this.order.from.location);
+    from.setAddress(this.order.from.address);
+    tsOrder.setFrom(from);
+
+    let to = new Position();
+    to.setName(this.order.tos[0].name);
+    to.setLocation(this.order.tos[0].location);
+    to.setAddress(this.order.tos[0].address);
+    tsOrder.setTosList([to])
+    tsOrder.setType(this.order.type);
+    tsOrder.setFee(this.order.fee);
+    tsOrder.setCreated(this.order.created);
+    const call = this.ordersClient.add(tsOrder, { 'custom-header-1': 'value1' },
+      (err: grpcWeb.Error, response: Order) => {
+        console.log(err);
+        console.log(response);
+        this.modalController.dismiss();
+      });
+    call.on('status', (status: grpcWeb.Status) => {
+      console.log(status); call.on('status', (status: grpcWeb.Status) => {
+        console.log(status);
+      });
+    });
   }
 }
