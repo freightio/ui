@@ -140,11 +140,11 @@ module.exports = [
     ]
   },
   {
-    "id": "cordova-plugin-gubnoi-alipay.Alipay",
-    "file": "plugins/cordova-plugin-gubnoi-alipay/www/alipay.js",
-    "pluginId": "cordova-plugin-gubnoi-alipay",
+    "id": "cordova-plugin-alipay.alipay",
+    "file": "plugins/cordova-plugin-alipay/www/alipay.js",
+    "pluginId": "cordova-plugin-alipay",
     "clobbers": [
-      "cordova.plugins.ali"
+      "cordova.plugins.alipay"
     ]
   }
 ];
@@ -160,7 +160,7 @@ module.exports.metadata =
   "phonegap-plugin-barcodescanner": "8.0.1",
   "cordova-plugin-geolocation": "4.0.1",
   "cordova-plugin-contacts": "3.0.1",
-  "cordova-plugin-gubnoi-alipay": "0.0.4"
+  "cordova-plugin-alipay": "0.0.1"
 };
 // BOTTOM OF METADATA
 });

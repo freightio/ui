@@ -29,10 +29,10 @@
     "@ionic/angular": "4.0.0-beta.15",
     "@types/google-protobuf": "^3.2.7",
     "cordova-android": "7.1.4",
+    "cordova-plugin-alipay": "git+https://github.com/ejiyuan/cordova-plugin-alipay.git",
     "cordova-plugin-contacts": "^3.0.1",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-geolocation": "^4.0.1",
-    "cordova-plugin-gubnoi-alipay": "0.0.4",
     "cordova-plugin-ionic-keyboard": "^2.1.3",
     "cordova-plugin-ionic-webview": "^2.3.1",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -94,8 +94,9 @@
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
       },
       "cordova-plugin-contacts": {},
-      "cordova-plugin-gubnoi-alipay": {
-        "APP_ID": "2018111762227213"
+      "cordova-plugin-alipay": {
+        "APP_ID": "2018111762227213",
+        "SANDBOX_MODE": "true"
       }
     },
     "platforms": [

@@ -37,7 +37,15 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"Alipay\"><param name=\"android-package\" value=\"org.apache.cordova.ali.Alipay\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "xml": "<feature name=\"alipay\"><param name=\"android-package\" value=\"cn.meylink.alipay.alipay\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<preference name=\"APP_ID\" value=\"2018111762227213\" />",
+              "count": 1
+            },
+            {
+              "xml": "<preference name=\"SANDBOX_MODE\" value=\"true\" />",
               "count": 1
             }
           ]
@@ -93,26 +101,6 @@
             {
               "xml": "<uses-feature android:name=\"android.hardware.camera\" android:required=\"true\" />",
               "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-              "count": 1
             }
           ],
           "/*": [
@@ -138,6 +126,26 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
               "count": 1
             }
           ]
@@ -175,8 +183,9 @@
     "cordova-plugin-contacts": {
       "PACKAGE_NAME": "io.freight.starter"
     },
-    "cordova-plugin-gubnoi-alipay": {
+    "cordova-plugin-alipay": {
       "APP_ID": "2018111762227213",
+      "SANDBOX_MODE": "true",
       "PACKAGE_NAME": "io.freight.starter"
     }
   },
@@ -322,11 +331,11 @@
       ]
     },
     {
-      "id": "cordova-plugin-gubnoi-alipay.Alipay",
-      "file": "plugins/cordova-plugin-gubnoi-alipay/www/alipay.js",
-      "pluginId": "cordova-plugin-gubnoi-alipay",
+      "id": "cordova-plugin-alipay.alipay",
+      "file": "plugins/cordova-plugin-alipay/www/alipay.js",
+      "pluginId": "cordova-plugin-alipay",
       "clobbers": [
-        "cordova.plugins.ali"
+        "cordova.plugins.alipay"
       ]
     }
   ],
@@ -340,6 +349,6 @@
     "phonegap-plugin-barcodescanner": "8.0.1",
     "cordova-plugin-geolocation": "4.0.1",
     "cordova-plugin-contacts": "3.0.1",
-    "cordova-plugin-gubnoi-alipay": "0.0.4"
+    "cordova-plugin-alipay": "0.0.1"
   }
 }

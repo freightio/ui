@@ -24,9 +24,8 @@
     <feature name="Contacts">
         <param name="android-package" value="org.apache.cordova.contacts.ContactManager" />
     </feature>
-    <feature name="Alipay">
-        <param name="android-package" value="org.apache.cordova.ali.Alipay" />
-        <param name="onload" value="true" />
+    <feature name="alipay">
+        <param name="android-package" value="cn.meylink.alipay.alipay" />
     </feature>
     <allow-navigation href="http://localhost:8080/*" />
     <feature name="IonicWebView">
@@ -66,6 +65,8 @@
     <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
     <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     <preference name="loglevel" value="DEBUG" />
+    <preference name="APP_ID" value="2018111762227213" />
+    <preference name="SANDBOX_MODE" value="true" />
     <preference name="webView" value="com.ionicframework.cordova.webview.IonicWebViewEngine" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />

@@ -20,12 +20,12 @@
         "source": "/home/daniel/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/7898f1e44cf3b9a6acf047954df9cc73/res/layout/notification_media_action.xml"
     },
     {
-        "merged": "/home/daniel/go/src/github.com/freightio/ui/platforms/android/app/build/intermediates/res/merged/debug/layout_notification_template_lines_media.xml.flat",
-        "source": "/home/daniel/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/7898f1e44cf3b9a6acf047954df9cc73/res/layout/notification_template_lines_media.xml"
-    },
-    {
         "merged": "/home/daniel/go/src/github.com/freightio/ui/platforms/android/app/build/intermediates/res/merged/debug/mipmap-hdpi_icon.png.flat",
         "source": "/home/daniel/go/src/github.com/freightio/ui/platforms/android/app/src/main/res/mipmap-hdpi/icon.png"
+    },
+    {
+        "merged": "/home/daniel/go/src/github.com/freightio/ui/platforms/android/app/build/intermediates/res/merged/debug/layout_notification_template_lines_media.xml.flat",
+        "source": "/home/daniel/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/7898f1e44cf3b9a6acf047954df9cc73/res/layout/notification_template_lines_media.xml"
     },
     {
         "merged": "/home/daniel/go/src/github.com/freightio/ui/platforms/android/app/build/intermediates/res/merged/debug/drawable-hdpi_launcher_icon.png.flat",
