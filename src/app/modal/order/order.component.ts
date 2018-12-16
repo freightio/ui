@@ -6,7 +6,7 @@ import * as grpcWeb from 'grpc-web';
 import { OrdersClient } from '../../../sdk/order_grpc_web_pb';
 import { Order, Position, Sender, SignReply } from '../../../sdk/order_pb';
 
-declare let cordova:any;
+declare let cordova: any;
 //declare var proto;
 
 @Component({
@@ -134,16 +134,18 @@ export class OrderComponent implements OnInit {
     tsOrder.setFee(666);
     const call = this.ordersClient.signAlipay(tsOrder, { 'custom-header-1': 'value1' },
       (err: grpcWeb.Error, response: SignReply) => {
-        console.log(err);
-        console.log(response);
-        cordova.plugins.alipay.payment(response.getSigned(),
-          function success(e) {
-            alert(e);
-          },
-          function error(e) {
-            alert(e);
-          });
+        if (err) {
+          alert(err.message)
+        } {
+          alert(response);
+          cordova.plugins.alipay.payment(response.getSigned(),
+            function success(e) {
+              alert(e);
+            },
+            function error(e) {
+              alert(e);
+            });
+        }
       });
-
   }
 }
