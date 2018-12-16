@@ -20,6 +20,8 @@ export class Order {
   setDriverid(a: string): void;
   getStatus(): string;
   setStatus(a: string): void;
+  getPayinfo(): PayInfo;
+  setPayinfo(a: PayInfo): void;
   toObject(): Order.AsObject;
   serializeBinary(): Uint8Array;
   static deserializeBinary: (bytes: {}) => Order;
@@ -37,6 +39,7 @@ export namespace Order {
     Created: number;
     Driverid: string;
     Status: string;
+    Payinfo: PayInfo;
   }
   export type AnnotationsEntry = OrderAnnotationsEntry;
 }
@@ -104,6 +107,24 @@ export class OrderRequest {
 export namespace OrderRequest {
   export type AsObject = {
     Id: string;
+  }
+}
+
+export class PayInfo {
+  constructor ();
+  getType(): string;
+  setType(a: string): void;
+  getPayresult(): string;
+  setPayresult(a: string): void;
+  toObject(): PayInfo.AsObject;
+  serializeBinary(): Uint8Array;
+  static deserializeBinary: (bytes: {}) => PayInfo;
+}
+
+export namespace PayInfo {
+  export type AsObject = {
+    Type: string;
+    Payresult: string;
   }
 }
 

@@ -71,6 +71,11 @@ export class DriverPage implements OnInit {
   }
 
   async showUserDetail(order) {
+    let localUser = window.localStorage.getItem('user');
+    if (!localUser) {
+      window.alert('请登录后再接单.');
+      return
+    }
     const alert = await this.alertController.create({
       header: '确认接单[' + order.sender.name + ']?',
       buttons: [
@@ -87,7 +92,8 @@ export class DriverPage implements OnInit {
             let tsOrder = new Order();
             tsOrder.setId(order.id)
             tsOrder.setStatus('accept');
-            tsOrder.setDriverid(window.localStorage.getItem('userId'));
+
+            tsOrder.setDriverid(JSON.parse(localUser).id);
             this.ordersClient.update(tsOrder, { 'custom-header-1': 'value1' },
               (err: grpcWeb.Error, response: Order) => {
                 console.log(response);

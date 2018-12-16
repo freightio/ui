@@ -4,7 +4,7 @@ import { Contacts } from '@ionic-native/contacts/ngx';
 import { environment } from '../../../environments/environment';
 import * as grpcWeb from 'grpc-web';
 import { OrdersClient } from '../../../sdk/order_grpc_web_pb';
-import { Order, Position, Sender, SignReply } from '../../../sdk/order_pb';
+import { Order, Position, Sender, SignReply, PayInfo } from '../../../sdk/order_pb';
 
 declare let cordova: any;
 //declare var proto;
@@ -106,8 +106,11 @@ export class OrderComponent implements OnInit {
           let payInfo = response.getSigned();
           cordova.plugins.alipay.payment(payInfo, (success) => {
             console.log(success);
-            alert('success:' + JSON.stringify(success));
-            this.saveToDB();
+            //alert('success:' + JSON.stringify(success));
+            let payInfo = new PayInfo();
+            payInfo.setType('alipay');
+            payInfo.setPayresult(JSON.stringify(success));
+            this.saveToDB(payInfo);
           }, (error) => {
             console.log(error);
             alert('error:' + JSON.stringify(error));
@@ -116,7 +119,7 @@ export class OrderComponent implements OnInit {
       });
   }
 
-  saveToDB() {
+  saveToDB(payInfo: PayInfo) {
     const tsOrder = new Order();
     let sender = new Sender()
     //empty if no-login
@@ -139,6 +142,7 @@ export class OrderComponent implements OnInit {
     tsOrder.setType(this.order.type);
     tsOrder.setFee(this.order.fee);
     tsOrder.setCreated(this.order.created);
+    tsOrder.setPayinfo(payInfo);
     const call = this.ordersClient.add(tsOrder, { 'custom-header-1': 'value1' },
       (err: grpcWeb.Error, response: Order) => {
         console.log(err);

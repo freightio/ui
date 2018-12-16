@@ -4,6 +4,7 @@ import {
   AnnotationsEntry,
   OrderList,
   OrderRequest,
+  PayInfo,
   Position,
   Sender,
   SignReply,
