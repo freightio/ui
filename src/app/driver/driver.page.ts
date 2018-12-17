@@ -30,37 +30,37 @@ export class DriverPage implements OnInit {
   }
 
   ngOnInit() {
-    //this.geolocation.getCurrentPosition().then((resp) => {
-    //  let positon = new Position()
-    //  positon.setLocation(resp.coords.latitude + ',' + resp.coords.longitude);
-    this.ordersClient.listByPositon(new Position(), { 'custom-header-1': 'value1' },
-      (err: grpcWeb.Error, response: OrderList) => {
-        for (var i in response.getItemsList()) {
-          let tsOrder = response.getItemsList()[i]
-          this.orders[i] = tsOrder.toObject();
-          if (tsOrder.getSender() != null) {
-            this.orders[i].sender = tsOrder.getSender().toObject();
-          }
-          if (tsOrder.getFrom() != null) {
-            this.orders[i].from = tsOrder.getFrom().toObject();
-          }
-          if (tsOrder.getTosList()[0] != null) {
-            this.orders[i].to = tsOrder.getTosList()[0].toObject();
-          }
-          this.orders[i].fee = tsOrder.getFee().toFixed(2);
-          // let a = <Order>response.getItemsList()[i];
-          // let order = new proto.backend.Order();
-          // order.time = a.getId();
-          // order.contact = a.getContact();
-          // order.from = a.getFrom();
-          // order.tos = a.getTosList();
-          // order.type = a.getType();
-          // order.fee = a .getFee();
-          // this.orders[i] = order;
-        };
-        this.loadDistance();
-      });
-    // });
+    this.geolocation.getCurrentPosition().then((resp) => {
+      let positon = new Position()
+      positon.setLocation(resp.coords.latitude + ',' + resp.coords.longitude);
+      this.ordersClient.listByPositon(positon, { 'custom-header-1': 'value1' },
+        (err: grpcWeb.Error, response: OrderList) => {
+          for (var i in response.getItemsList()) {
+            let tsOrder = response.getItemsList()[i]
+            this.orders[i] = tsOrder.toObject();
+            if (tsOrder.getSender() != null) {
+              this.orders[i].sender = tsOrder.getSender().toObject();
+            }
+            if (tsOrder.getFrom() != null) {
+              this.orders[i].from = tsOrder.getFrom().toObject();
+            }
+            if (tsOrder.getTosList()[0] != null) {
+              this.orders[i].to = tsOrder.getTosList()[0].toObject();
+            }
+            this.orders[i].fee = tsOrder.getFee().toFixed(2);
+            // let a = <Order>response.getItemsList()[i];
+            // let order = new proto.backend.Order();
+            // order.time = a.getId();
+            // order.contact = a.getContact();
+            // order.from = a.getFrom();
+            // order.tos = a.getTosList();
+            // order.type = a.getType();
+            // order.fee = a .getFee();
+            // this.orders[i] = order;
+          };
+          this.loadDistance();
+        });
+    });
   }
 
   refresh(event) {
