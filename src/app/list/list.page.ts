@@ -11,8 +11,10 @@ import { environment } from '../../environments/environment';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  orders: any;
+  orders: any[];
+  status: string;
   ordersClient = new OrdersClient(environment.apiUrl, null, null);
+
   constructor() {
     this.orders = [];
   }
@@ -42,26 +44,13 @@ export class ListPage implements OnInit {
               this.orders[i].to = tsOrder.getTosList()[0].toObject();
             }
             this.orders[i].fee = tsOrder.getFee().toFixed(2);
-            // let a = <Order>response.getItemsList()[i];
-            // let order = new proto.backend.Order();
-            // order.time = a.getId();
-            // order.contact = a.getContact();
-            // order.from = a.getFrom();
-            // order.tos = a.getTosList();
-            // order.type = a.getType();
-            // order.fee = a .getFee();
-            // this.orders[i] = order;
           };
         }
-
-        // this.loadDistance();
+        this.orders = this.orders.filter(order => order.status == this.status);
       });
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
-  refresh(event:any) {
+
+  refresh(event: any) {
     this.ngOnInit();
     setTimeout(() => {
       event.target.complete();

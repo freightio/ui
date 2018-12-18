@@ -13,14 +13,14 @@
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-segment>
-    <ion-segment-button value="friends" checked>
+  <ion-segment [(ngModel)]="status" (ionChange)="ngOnInit()">
+    <ion-segment-button value="accept" checked>
       进行中
     </ion-segment-button>
-    <ion-segment-button value="enemies">
+    <ion-segment-button value="done">
       已完成
     </ion-segment-button>
-    <ion-segment-button value="enemies2">
+    <ion-segment-button value="cancel">
       已取消
     </ion-segment-button>
   </ion-segment>
