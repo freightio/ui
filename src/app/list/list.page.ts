@@ -1,9 +1,11 @@
 import * as grpcWeb from 'grpc-web';
 import { OrdersClient } from '../../sdk/order_grpc_web_pb';
-import { OrderList } from '../../sdk/order_pb';
+import { OrderList, Order } from '../../sdk/order_pb';
 import { User } from '../../sdk/user_pb';
+import { AlertController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { loginService } from '../providers/util.service';
 
 @Component({
   selector: 'app-list',
@@ -15,16 +17,13 @@ export class ListPage implements OnInit {
   status: string;
   ordersClient = new OrdersClient(environment.apiUrl, null, null);
 
-  constructor() {
+  constructor(private alertController: AlertController) {
     this.orders = [];
   }
 
   ngOnInit() {
     const tsUser = new User();
-    let localUser = window.localStorage.getItem('user');
-    if (localUser) {
-      tsUser.setTel(JSON.parse(localUser).tel);
-    }
+    tsUser.setTel(loginService.getUser().tel);
     this.ordersClient.listByUser(tsUser, { 'custom-header-1': 'value1' },
       (err: grpcWeb.Error, response: OrderList) => {
         if (err) {
@@ -55,5 +54,39 @@ export class ListPage implements OnInit {
     setTimeout(() => {
       event.target.complete();
     }, 1000);
+  }
+
+  async confirm(order) {
+    let localUser = window.localStorage.getItem('user');
+    if (JSON.parse(localUser).id != order.driverid) {
+      window.alert('请接单司机确认订单!');
+      return
+    }
+    const alert = await this.alertController.create({
+      header: '确认订单[' + order.sender.name + ']已完成?',
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: '确定',
+          handler: data => {
+            // let tsOrder = new Order();
+            // tsOrder.setId(order.id)
+            // tsOrder.setStatus('accept');
+            // tsOrder.setDriverid(JSON.parse(localUser).id);
+            // this.ordersClient.update(tsOrder, { 'custom-header-1': 'value1' },
+            //   (err: grpcWeb.Error, response: Order) => {
+            //     console.log(response);
+            //   });
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 }

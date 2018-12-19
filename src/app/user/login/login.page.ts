@@ -5,6 +5,7 @@ import { Events } from '@ionic/angular';
 import { User } from '../../../sdk/user_pb';
 import { UsersClient } from '../../../sdk/user_grpc_web_pb';
 import { environment } from '../../../environments/environment';
+import { loginService } from '../../providers/util.service';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +34,7 @@ export class LoginPage implements OnInit {
       } else {
         let username = response.getName();
         this.events.publish('user:login', username);
-        window.localStorage.setItem('user', JSON.stringify(response.toObject()));
+        loginService.setUser(response.toObject());
         this.router.navigateByUrl('/home');
       }
       console.log(response);
