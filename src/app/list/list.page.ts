@@ -26,7 +26,7 @@ export class ListPage implements OnInit {
 
   ngOnInit() {
     const tsUser = new User();
-    tsUser.setTel(loginService.getUser().tel);
+    tsUser.setId(loginService.getUser().id);
     this.ordersClient.listByUser(tsUser, { 'custom-header-1': 'value1' },
       (err: grpcWeb.Error, response: OrderList) => {
         if (err) {
