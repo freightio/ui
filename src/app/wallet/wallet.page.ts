@@ -23,8 +23,11 @@ export class WalletPage implements OnInit {
     account.setUserid(loginService.getUser().id);
     this.walletsClient.total(account, {}, (err: grpcWeb.Error,
       response: Account) => {
-      if (response.toObject().Fee) {
-        this.account.fee = response.toObject().Fee.toFixed(2);
+      if (err) {
+        console.log(err);
+      }
+      if (response.toObject()) {
+        this.account.fee = (<any>response.toObject()).fee.toFixed(2);
       } else {
         this.account.fee = '0.00';
       }

@@ -51,7 +51,7 @@ export class OrderComponent implements OnInit {
         role: 'destructive',
         icon: 'trash',
         handler: () => {
-          //alert('即将支持');
+          alert('正在支付.');
           let account = new Account();
           account.setFee(-this.order.fee);
           //account.setOrderid(order.id);
