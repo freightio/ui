@@ -2,6 +2,8 @@ import * as grpcWeb from 'grpc-web';
 import { OrdersClient } from '../../sdk/order_grpc_web_pb';
 import { OrderList, Order } from '../../sdk/order_pb';
 import { User } from '../../sdk/user_pb';
+import { Account } from '../../sdk/wallet_pb';
+import { WalletsClient } from '../../sdk/wallet_grpc_web_pb';
 import { AlertController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
@@ -16,6 +18,7 @@ export class ListPage implements OnInit {
   orders: any[];
   status: string;
   ordersClient = new OrdersClient(environment.apiUrl, null, null);
+  walletsClient = new WalletsClient(environment.apiUrl, null, null);
 
   constructor(private alertController: AlertController) {
     this.orders = [];
@@ -57,8 +60,7 @@ export class ListPage implements OnInit {
   }
 
   async confirm(order) {
-    let localUser = window.localStorage.getItem('user');
-    if (JSON.parse(localUser).id != order.driverid) {
+    if (loginService.getUser().id != order.driverid) {
       window.alert('请接单司机确认订单!');
       return
     }
@@ -75,14 +77,22 @@ export class ListPage implements OnInit {
         }, {
           text: '确定',
           handler: data => {
-            // let tsOrder = new Order();
-            // tsOrder.setId(order.id)
-            // tsOrder.setStatus('accept');
-            // tsOrder.setDriverid(JSON.parse(localUser).id);
-            // this.ordersClient.update(tsOrder, { 'custom-header-1': 'value1' },
-            //   (err: grpcWeb.Error, response: Order) => {
-            //     console.log(response);
-            //   });
+            //TODO:put to backend in transaction
+            let tsOrder = new Order();
+            tsOrder.setId(order.id)
+            tsOrder.setStatus('done');
+            this.ordersClient.update(tsOrder, { 'custom-header-1': 'value1' },
+              (err: grpcWeb.Error, response: Order) => {
+                console.log(response);
+              });
+
+            let account = new Account();
+            account.setFee(order.fee);
+            account.setOrderid(order.id);
+            account.setUserid(order.driverid);
+            this.walletsClient.add(account, {}, (err: grpcWeb.Error, response: Account) => {
+              console.log(response);
+            })
           }
         }
       ]

@@ -3,6 +3,9 @@ import { NavParams, ActionSheetController, ModalController } from '@ionic/angula
 import { Contacts } from '@ionic-native/contacts/ngx';
 import { environment } from '../../../environments/environment';
 import * as grpcWeb from 'grpc-web';
+import { Account } from '../../../sdk/wallet_pb';
+import { loginService } from '../../providers/util.service';
+import { WalletsClient } from '../../../sdk/wallet_grpc_web_pb';
 import { OrdersClient } from '../../../sdk/order_grpc_web_pb';
 import { Order, Position, Sender, SignReply, PayInfo } from '../../../sdk/order_pb';
 
@@ -17,6 +20,7 @@ declare var proto;
 export class OrderComponent implements OnInit {
   order = this.navParams.get('order');
   ordersClient = new OrdersClient(environment.apiUrl, null, null);
+  walletsClient = new WalletsClient(environment.apiUrl, null, null);
 
   constructor(
     private navParams: NavParams,
@@ -47,8 +51,18 @@ export class OrderComponent implements OnInit {
         role: 'destructive',
         icon: 'trash',
         handler: () => {
-          console.log('Delete clicked');
-          alert('即将支持');
+          //alert('即将支持');
+          let account = new Account();
+          account.setFee(-this.order.fee);
+          //account.setOrderid(order.id);
+          account.setUserid(loginService.getUser().id);
+          this.walletsClient.add(account, {}, (err: grpcWeb.Error, response: Account) => {
+            console.log(response);
+            let payInfo = new PayInfo();
+            payInfo.setType('walletpay');
+            payInfo.setPayresult(JSON.stringify(response));
+            this.saveToDB(payInfo);
+          })
         }
       }, {
         text: '支付宝',
@@ -122,10 +136,7 @@ export class OrderComponent implements OnInit {
   saveToDB(payInfo: PayInfo) {
     const tsOrder = new Order();
     let sender = new Sender()
-    let localUser = window.localStorage.getItem('user');
-    if (localUser) {
-      sender.setId(JSON.parse(localUser).id);
-    }
+    sender.setId(loginService.getUser().id);
     sender.setName(this.order.sender.name);
     sender.setTel(this.order.sender.tel);
     tsOrder.setSender(sender);
