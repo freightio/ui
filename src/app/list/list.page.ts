@@ -61,7 +61,7 @@ export class ListPage implements OnInit {
 
   async confirm(order) {
     if (loginService.getUser().id != order.driverid) {
-      window.alert('仅限司机确认订单!');
+      window.alert('仅司机可确认订单!');
       return
     }
     const alert = await this.alertController.create({
