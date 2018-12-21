@@ -19,6 +19,10 @@ export class UtilService {
   setUser(user) {
     window.localStorage.setItem('user', JSON.stringify(user));
   }
+
+  logout() {
+    window.localStorage.removeItem('user');
+  }
 }
 
 export const loginService = new UtilService();

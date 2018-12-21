@@ -16,12 +16,12 @@ export class LoginPage implements OnInit {
   tel = '';
   password = '';
   userClient = new UsersClient(environment.apiUrl, null, null);
+
   constructor(
     private events: Events,
     private router: Router, ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   login() {
     const tsUser = new User();
@@ -43,5 +43,9 @@ export class LoginPage implements OnInit {
 
   signup() {
     this.router.navigateByUrl('/signup');
+  }
+
+  logout() {
+    loginService.logout();
   }
 }

@@ -1,8 +1,8 @@
+import * as grpcWeb from 'grpc-web';
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { environment } from '../../environments/environment';
-import * as grpcWeb from 'grpc-web';
 import { OrdersClient } from '../../sdk/order_grpc_web_pb';
 import { Order, OrderList, Position } from '../../sdk/order_pb';
 import { loginService } from '../providers/util.service';
@@ -18,15 +18,15 @@ declare var AMap;
 export class DriverPage implements OnInit {
   orders: any[];
   ordersClient = new OrdersClient(environment.apiUrl, null, null);
-  //currentLocation: any;
+  
   constructor(
     private geolocation: Geolocation,
     private alertController: AlertController
   ) {
     this.orders = [
-      { 'sender': { 'name': '用户1' }, 'type': '小面包车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 66.66 },
-      { 'sender': { 'name': '用户2' }, 'type': '大货车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 88.88 },
-      { 'sender': { 'name': '用户3' }, 'type': '中货车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 99.99 }
+      // { 'sender': { 'name': '用户1' }, 'type': '小面包车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 66.66 },
+      // { 'sender': { 'name': '用户2' }, 'type': '大货车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 88.88 },
+      // { 'sender': { 'name': '用户3' }, 'type': '中货车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 99.99 }
     ];
   }
 
