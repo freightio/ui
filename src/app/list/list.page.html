@@ -13,7 +13,7 @@
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-segment [(ngModel)]="status" (ionChange)="ngOnInit()">
+  <ion-segment [(ngModel)]="status" (ionChange)="load()">
     <ion-segment-button value="accept" checked>
       进行中
     </ion-segment-button>

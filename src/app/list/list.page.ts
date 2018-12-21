@@ -24,7 +24,9 @@ export class ListPage implements OnInit {
     this.orders = [];
   }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  load() {
     const tsUser = new User();
     tsUser.setId(loginService.getUser().id);
     this.ordersClient.listByUser(tsUser, { 'custom-header-1': 'value1' },
@@ -53,7 +55,7 @@ export class ListPage implements OnInit {
   }
 
   refresh(event: any) {
-    this.ngOnInit();
+    this.load();
     setTimeout(() => {
       event.target.complete();
     }, 1000);

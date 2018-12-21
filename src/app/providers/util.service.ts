@@ -10,7 +10,7 @@ export class UtilService {
   getUser() {
     let localUser = window.localStorage.getItem('user');
     if (!localUser) {
-      window.alert('请登录.')
+      window.alert('请登录!')
       return {}
     }
     return JSON.parse(localUser)
