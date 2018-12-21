@@ -76,7 +76,7 @@ export class OrderComponent implements OnInit {
         icon: 'arrow-dropright-circle',
         handler: () => {
           console.log('Play clicked');
-          alert('即将支持');
+          alert('即将支持!');
           // var ordersClient = new proto.backend.OrdersClient(environment.apiUrl);
           // var order = new proto.backend.Order();
           // order.setName('张三');
