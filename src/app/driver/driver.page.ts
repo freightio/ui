@@ -18,7 +18,7 @@ declare var AMap;
 export class DriverPage implements OnInit {
   orders: any[];
   ordersClient = new OrdersClient(environment.apiUrl, null, null);
-  
+
   constructor(
     private geolocation: Geolocation,
     private alertController: AlertController
@@ -72,6 +72,9 @@ export class DriverPage implements OnInit {
   }
 
   async showUserDetail(order) {
+    if (!loginService.getUser().id) {
+      return
+    }
     const alert = await this.alertController.create({
       header: '确认接单[' + order.sender.name + ']?',
       buttons: [
