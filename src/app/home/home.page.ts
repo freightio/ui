@@ -81,6 +81,7 @@ export class HomePage {
   itemClick(freight) {
     this.currentFreight = freight;
     this.order.type = freight.name;
+    this.computeFee();
   }
 
   async presentFromModal() {
