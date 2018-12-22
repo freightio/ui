@@ -3,6 +3,7 @@ import { ModalController, Slides } from '@ionic/angular';
 import { ModalComponent } from '../modal/map/modal.component';
 import { OrderComponent } from '../modal/order/order.component';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
+import { loginService } from '../providers/util.service';
 
 declare var AMap;
 declare var proto;
@@ -27,11 +28,26 @@ export class HomePage {
   };
 
   freights = [
-    { 'name': '小面包车', 'image': 'assets/img/11.png', 'weight': '800公斤', 'lwh': '1.8*1.2*1.1米', 'cube': '2.4方', 'price': 10 },
-    { 'name': '中面包车', 'image': 'assets/img/22.png', 'weight': '1.2吨', 'lwh': '2.8*1.5*1.3米', 'cube': '5.5方', 'price': 10 },
-    { 'name': '小货车', 'image': 'assets/img/33.png', 'weight': '1.5吨', 'lwh': '2.1*1.7*1.6米', 'cube': '5.7方', 'price': 10 },
-    { 'name': '中货车', 'image': 'assets/img/44.png', 'weight': '1.8吨', 'lwh': '4.2*1.8*1.8米', 'cube': '13.6方', 'price': 10 },
-    { 'name': '大货车', 'image': 'assets/img/55.png', 'weight': '7吨', 'lwh': '7.6*2.3*2.5米', 'cube': '43.7方', 'price': 10 }
+    {
+      'name': '小面包车', 'image': 'assets/img/11.png', 'weight': '800公斤', 'lwh': '1.8*1.2*1.1米', 'cube': '2.4方',
+      'price': { 'start': { 'distance': 5, 'fee': 30 }, 'then': 3 }
+    },
+    {
+      'name': '中面包车', 'image': 'assets/img/22.png', 'weight': '1.2吨', 'lwh': '2.8*1.5*1.3米', 'cube': '5.5方',
+      'price': { 'start': { 'distance': 5, 'fee': 56 }, 'then': 4 }
+    },
+    {
+      'name': '小货车', 'image': 'assets/img/33.png', 'weight': '1.5吨', 'lwh': '2.1*1.7*1.6米', 'cube': '5.7方',
+      'price': { 'start': { 'distance': 5, 'fee': 68 }, 'then': 4 }
+    },
+    {
+      'name': '中货车', 'image': 'assets/img/44.png', 'weight': '1.8吨', 'lwh': '4.2*1.8*1.8米', 'cube': '13.6方',
+      'price': { 'start': { 'distance': 5, 'fee': 120 }, 'then': 5 }
+    },
+    {
+      'name': '大货车', 'image': 'assets/img/55.png', 'weight': '7吨', 'lwh': '7.6*2.3*2.5米', 'cube': '43.7方',
+      'price': { 'start': { 'distance': 15, 'fee': 410 }, 'then': 10 }
+    }
   ];
 
   constructor(
@@ -97,11 +113,16 @@ export class HomePage {
       const p1 = this.order.from.location.split(',');
       const p2 = this.order.tos[0].location.split(',');
       // 返回 p1 到 p2 间的地面距离，单位：米
-      console.log('hp1',p1);
-      console.log('hp2',p2);
-      const dis = AMap.GeometryUtil.distance(p1, p2);
+      console.log('hp1', p1);
+      console.log('hp2', p2);
+      const dis = AMap.GeometryUtil.distance(p1, p2) / 1000;
+      if (dis < this.currentFreight.price.start.distance) {
+        this.order.fee = this.currentFreight.price.start.fee;
+      } else {
+        this.order.fee = (dis * this.currentFreight.price.then).toFixed(2);
+      }
       //this.fee = dis * this.currentFreight.price / 1000;
-      this.order.fee = (dis * this.currentFreight.price / 1000).toFixed(2);
+      //this.order.fee = (dis * this.currentFreight.price / 1000).toFixed(2);
     }
   }
 
@@ -120,6 +141,10 @@ export class HomePage {
   async beginNow() {
     if (!this.order.from || !this.order.tos) {
       alert('订单起点与终点不能为空!');
+      return
+    }
+
+    if (!loginService.getUser().id) {
       return
     }
 
