@@ -62,6 +62,9 @@ export class ListPage implements OnInit {
   }
 
   async confirm(order) {
+    if (order.status != 'accept') {
+      return
+    }
     if (loginService.getUser().id != order.driverid) {
       window.alert('仅司机可确认订单!');
       return
