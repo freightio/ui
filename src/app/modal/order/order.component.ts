@@ -44,6 +44,10 @@ export class OrderComponent implements OnInit {
   }
 
   async presentActionSheet() {
+    if (!this.order.sender) {
+      window.alert('请填写订单联系人与电话!');
+      return
+    }
     const actionSheet = await this.actionSheetController.create({
       header: '支付方式',
       buttons: [{
