@@ -44,7 +44,7 @@ export class OrderComponent implements OnInit {
   }
 
   async presentActionSheet() {
-    if (!this.order.sender) {
+    if (!this.order.sender.name || !this.order.sender.tel) {
       window.alert('请填写订单联系人与电话!');
       return
     }

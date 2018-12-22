@@ -1,4 +1,4 @@
-#Sat Dec 22 14:02:54 CST 2018
+#Sat Dec 22 14:15:29 CST 2018
 base.0=/home/daniel/go/src/github.com/freightio/ui/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex
