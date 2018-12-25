@@ -1,9 +1,13 @@
-import { Component, Injector, ViewChild } from '@angular/core';
+import { Component, Injector, ViewChild, OnInit } from '@angular/core';
 import { ModalController, Slides } from '@ionic/angular';
 import { ModalComponent } from '../modal/map/modal.component';
 import { OrderComponent } from '../modal/order/order.component';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
 import { loginService } from '../providers/util.service';
+import { environment } from '../../environments/environment';
+import * as grpcWeb from 'grpc-web';
+import { VehiclesClient } from '../../sdk/vehicle_grpc_web_pb';
+import { VehicleList, Empty } from '../../sdk/vehicle_pb';
 
 declare var AMap;
 declare var proto;
@@ -13,51 +17,41 @@ declare var proto;
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
   @ViewChild(Slides) slides: Slides;
+  vehicles = [];
+  currentVehicle: any;
   showLeftButton = false;
   showRightButton = true;
-  currentFreight: any;
-  //from: any;
   to: any;
-  //fee: any;
   order: any;
+  vehiclesClient = new VehiclesClient(environment.apiUrl, null, null);
   sliderConfig = {
     slidesPerView: 4,
     effect: 'flip'
   };
 
-  freights = [
-    {
-      'name': '小面包车', 'image': 'assets/img/11.png', 'weight': '800公斤', 'lwh': '1.8*1.2*1.1米', 'cube': '2.4方',
-      'price': { 'start': { 'distance': 5, 'fee': 30 }, 'then': 3 }
-    },
-    {
-      'name': '中面包车', 'image': 'assets/img/22.png', 'weight': '1.2吨', 'lwh': '2.8*1.5*1.3米', 'cube': '5.5方',
-      'price': { 'start': { 'distance': 5, 'fee': 56 }, 'then': 4 }
-    },
-    {
-      'name': '小货车', 'image': 'assets/img/33.png', 'weight': '1.5吨', 'lwh': '2.1*1.7*1.6米', 'cube': '5.7方',
-      'price': { 'start': { 'distance': 5, 'fee': 68 }, 'then': 4 }
-    },
-    {
-      'name': '中货车', 'image': 'assets/img/44.png', 'weight': '1.8吨', 'lwh': '4.2*1.8*1.8米', 'cube': '13.6方',
-      'price': { 'start': { 'distance': 5, 'fee': 120 }, 'then': 5 }
-    },
-    {
-      'name': '大货车', 'image': 'assets/img/55.png', 'weight': '7吨', 'lwh': '7.6*2.3*2.5米', 'cube': '43.7方',
-      'price': { 'start': { 'distance': 15, 'fee': 410 }, 'then': 10 }
-    }
-  ];
-
   constructor(
     private modalController: ModalController,
     private barcodeScanner: BarcodeScanner) {
-    this.currentFreight = this.freights[0];
     this.order = new proto.backend.Order();
-    this.order.type = this.currentFreight.name;
   }
 
+  ngOnInit() {
+    this.vehiclesClient.list(new Empty(), {},
+      (err: grpcWeb.Error, response: VehicleList) => {
+        if (err) {
+          console.log(err)
+        }
+        for (var i in response.getItemsList()) {
+          let tsVehicle = response.getItemsList()[i]
+          console.log(tsVehicle.toObject());
+          this.vehicles[i] = tsVehicle.toObject();
+        }
+        this.currentVehicle = this.vehicles[0];
+        this.order.type = this.currentVehicle.name;
+      })
+  }
   // Method executed when the slides are changed
   public slideChanged(): void {
     this.slides.getActiveIndex().then(e => {
@@ -78,9 +72,9 @@ export class HomePage {
     this.slides.slidePrev();
   }
 
-  itemClick(freight) {
-    this.currentFreight = freight;
-    this.order.type = freight.name;
+  itemClick(vehicle) {
+    this.currentVehicle = vehicle;
+    this.order.type = vehicle.name;
     this.computeFee();
   }
 
@@ -117,10 +111,10 @@ export class HomePage {
       console.log('hp1', p1);
       console.log('hp2', p2);
       const dis = AMap.GeometryUtil.distance(p1, p2) / 1000;
-      if (dis < this.currentFreight.price.start.distance) {
-        this.order.fee = this.currentFreight.price.start.fee;
+      if (dis < this.currentVehicle.price.start.distance) {
+        this.order.fee = this.currentVehicle.price.start.fee;
       } else {
-        this.order.fee = (dis * this.currentFreight.price.then).toFixed(2);
+        this.order.fee = (dis * this.currentVehicle.price.then).toFixed(2);
       }
       //this.fee = dis * this.currentFreight.price / 1000;
       //this.order.fee = (dis * this.currentFreight.price / 1000).toFixed(2);

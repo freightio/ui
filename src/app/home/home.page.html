@@ -16,8 +16,8 @@
 
 <ion-content padding>
   <ion-slides (ionSlideDidChange)="slideChanged()" [options]="sliderConfig">
-    <ion-slide (click)="itemClick(freight)" *ngFor="let freight of freights">
-      <ion-label [class.selected]="currentFreight?.name === freight.name">{{freight.name}}</ion-label>
+    <ion-slide (click)="itemClick(vehicle)" *ngFor="let vehicle of vehicles">
+      <ion-label [class.selected]="currentVehicle?.name === vehicle.name">{{vehicle.name}}</ion-label>
     </ion-slide>
   </ion-slides>
   <ion-row style="height: 180px;" align-items-center>
@@ -25,18 +25,18 @@
       <ion-icon *ngIf="showLeftButton" name="arrow-back"></ion-icon>
     </ion-col>
     <ion-col>
-      <ion-img [src]="currentFreight?.image" style="height: 150%;width: 150%;margin-left: -50px"></ion-img>
+      <ion-img [src]="currentVehicle?.image" style="height: 150%;width: 150%;margin-left: -50px"></ion-img>
     </ion-col>
     <ion-col text-end (click)="slideNext()">
       <ion-icon *ngIf="showRightButton" name="arrow-forward"></ion-icon>
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col text-center class="small-size">{{currentFreight?.weight}}
+    <ion-col text-center class="small-size">{{currentVehicle?.weight}}
       <br />载重</ion-col>
-    <ion-col text-center class="small-size">{{currentFreight?.lwh}}
+    <ion-col text-center class="small-size">{{currentVehicle?.lwh}}
       <br />长宽高</ion-col>
-    <ion-col text-end class="small-size">{{currentFreight?.cube}}
+    <ion-col text-end class="small-size">{{currentVehicle?.cube}}
       <br />载货体积</ion-col>
   </ion-row>
   <br />
@@ -47,7 +47,7 @@
         <ion-img src="assets/img/from.png"></ion-img>
       </ion-avatar>
       <div>
-        <div (click)="presentFromModal()">起点</div>
+        <div (click)="presentFromModal()" expand="block">起点</div>
         {{order?.from?.address}}
         <ion-input *ngIf="order.from" [(ngModel)]="order.from.name" class="input-css"></ion-input>
       </div>
@@ -57,7 +57,7 @@
         <ion-img src="assets/img/to.png"></ion-img>
       </ion-avatar>
       <div>
-        <div (click)="presentToModal()">终点</div>
+        <div (click)="presentToModal()" expand="block">终点</div>
         {{to?.address}}
         <ion-input *ngIf="to" [(ngModel)]="to.name" class="input-css"></ion-input>
       </div>

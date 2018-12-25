@@ -1,11 +1,12 @@
 import * as grpcWeb from 'grpc-web';
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { environment } from '../../environments/environment';
 import { OrdersClient } from '../../sdk/order_grpc_web_pb';
 import { Order, OrderList, Position } from '../../sdk/order_pb';
 import { loginService } from '../providers/util.service';
+import { IntineryComponent } from '../modal/intinery/intinery.component';
 
 //declare var proto;
 declare var AMap;
@@ -16,18 +17,19 @@ declare var AMap;
   styleUrls: ['./driver.page.scss'],
 })
 export class DriverPage implements OnInit {
-  orders: any[];
+  orders = [];
   ordersClient = new OrdersClient(environment.apiUrl, null, null);
 
   constructor(
     private geolocation: Geolocation,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private modalController: ModalController,
   ) {
-    this.orders = [
-      // { 'sender': { 'name': '用户1' }, 'type': '小面包车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 66.66 },
-      // { 'sender': { 'name': '用户2' }, 'type': '大货车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 88.88 },
-      // { 'sender': { 'name': '用户3' }, 'type': '中货车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 99.99 }
-    ];
+    // this.orders = [
+    //   // { 'sender': { 'name': '用户1' }, 'type': '小面包车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 66.66 },
+    //   // { 'sender': { 'name': '用户2' }, 'type': '大货车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 88.88 },
+    //   // { 'sender': { 'name': '用户3' }, 'type': '中货车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 99.99 }
+    // ];
   }
 
   ngOnInit() {
@@ -75,6 +77,16 @@ export class DriverPage implements OnInit {
     if (!loginService.getUser().id) {
       return
     }
+
+    // const modal = await this.modalController.create({
+    //   component: IntineryComponent,
+    //   componentProps: { value: 123 }
+    // });
+
+    // await modal.present();
+    // const result = await modal.onDidDismiss();
+
+
     const alert = await this.alertController.create({
       header: '确认接单[' + order.sender.name + ']?',
       buttons: [
