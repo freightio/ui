@@ -1,4 +1,5 @@
 import * as grpcWeb from 'grpc-web';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
@@ -6,7 +7,6 @@ import { environment } from '../../environments/environment';
 import { OrdersClient } from '../../sdk/order_grpc_web_pb';
 import { Order, OrderList, Position } from '../../sdk/order_pb';
 import { loginService } from '../providers/util.service';
-import { IntineryComponent } from '../modal/intinery/intinery.component';
 
 //declare var proto;
 declare var AMap;
@@ -21,6 +21,7 @@ export class DriverPage implements OnInit {
   ordersClient = new OrdersClient(environment.apiUrl, null, null);
 
   constructor(
+    private router: Router,
     private geolocation: Geolocation,
     private alertController: AlertController,
     private modalController: ModalController,
@@ -74,9 +75,10 @@ export class DriverPage implements OnInit {
   }
 
   async showUserDetail(order) {
-    if (!loginService.getUser().id) {
-      return
-    }
+    this.router.navigateByUrl('/intinery');
+    // if (!loginService.getUser().id) {
+    //   return
+    // }
 
     // const modal = await this.modalController.create({
     //   component: IntineryComponent,
@@ -87,41 +89,41 @@ export class DriverPage implements OnInit {
     // const result = await modal.onDidDismiss();
 
 
-    const alert = await this.alertController.create({
-      header: '确认接单[' + order.sender.name + ']?',
-      buttons: [
-        {
-          text: '取消',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        }, {
-          text: '确定',
-          handler: data => {
-            let tsOrder = new Order();
-            tsOrder.setId(order.id)
-            tsOrder.setStatus('accept');
-            tsOrder.setDriverid(loginService.getUser().id);
-            this.ordersClient.update(tsOrder, { 'custom-header-1': 'value1' },
-              (err: grpcWeb.Error, response: Order) => {
-                console.log(response);
-              });
-          }
-        }
-      ]
-    });
-    await alert.present();
+    // const alert = await this.alertController.create({
+    //   header: '确认接单[' + order.sender.name + ']?',
+    //   buttons: [
+    //     {
+    //       text: '取消',
+    //       role: 'cancel',
+    //       cssClass: 'secondary',
+    //       handler: () => {
+    //         console.log('Confirm Cancel');
+    //       }
+    //     }, {
+    //       text: '确定',
+    //       handler: data => {
+    //         let tsOrder = new Order();
+    //         tsOrder.setId(order.id)
+    //         tsOrder.setStatus('accept');
+    //         tsOrder.setDriverid(loginService.getUser().id);
+    //         this.ordersClient.update(tsOrder, { 'custom-header-1': 'value1' },
+    //           (err: grpcWeb.Error, response: Order) => {
+    //             console.log(response);
+    //           });
+    //       }
+    //     }
+    //   ]
+    // });
+    // await alert.present();
   }
 
   loadDistance() {
     this.geolocation.getCurrentPosition().then(res => {
       for (var order of this.orders) {
         let p1 = ['' + res.coords.longitude, '' + res.coords.latitude]
-        console.log('p1', p1);
+       // console.log('p1', p1);
         let p2 = order.from.location.split(',')
-        console.log('p2', p2);
+       // console.log('p2', p2);
         const dis = AMap.GeometryUtil.distance(p1, p2);
         if (!order.annotations) {
           order.annotations = new Map();

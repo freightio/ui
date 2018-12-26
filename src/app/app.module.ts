@@ -14,11 +14,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ModalComponent } from './modal/map/modal.component';
 import { OrderComponent } from './modal/order/order.component';
-import { IntineryComponent } from './modal/intinery/intinery.component';
 
 @NgModule({
-  declarations: [AppComponent, ModalComponent, OrderComponent, IntineryComponent],
-  entryComponents: [ModalComponent, OrderComponent, IntineryComponent],
+  declarations: [AppComponent, ModalComponent, OrderComponent],
+  entryComponents: [ModalComponent, OrderComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
