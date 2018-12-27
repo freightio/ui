@@ -1,11 +1,10 @@
 import * as grpcWeb from 'grpc-web';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { environment } from '../../environments/environment';
 import { OrdersClient } from '../../sdk/order_grpc_web_pb';
-import { Order, OrderList, Position } from '../../sdk/order_pb';
+import { OrderList, Position } from '../../sdk/order_pb';
 import { loginService } from '../providers/util.service';
 
 //declare var proto;
@@ -23,15 +22,7 @@ export class DriverPage implements OnInit {
   constructor(
     private router: Router,
     private geolocation: Geolocation,
-    private alertController: AlertController,
-    private modalController: ModalController,
-  ) {
-    // this.orders = [
-    //   // { 'sender': { 'name': '用户1' }, 'type': '小面包车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 66.66 },
-    //   // { 'sender': { 'name': '用户2' }, 'type': '大货车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 88.88 },
-    //   // { 'sender': { 'name': '用户3' }, 'type': '中货车', 'created': '1543849950000', 'from': { 'name': '三里屯' }, 'to': { 'name': '天安门' }, 'fee': 99.99 }
-    // ];
-  }
+  ) { }
 
   ngOnInit() {
     this.geolocation.getCurrentPosition().then((resp) => {
@@ -39,6 +30,9 @@ export class DriverPage implements OnInit {
       positon.setLocation(resp.coords.latitude + ',' + resp.coords.longitude);
       this.ordersClient.listByPositon(positon, { 'custom-header-1': 'value1' },
         (err: grpcWeb.Error, response: OrderList) => {
+          if (err) {
+            this.ngOnInit();
+          }
           for (var i in response.getItemsList()) {
             let tsOrder = response.getItemsList()[i]
             this.orders[i] = tsOrder.toObject();
@@ -75,55 +69,17 @@ export class DriverPage implements OnInit {
   }
 
   async showUserDetail(order) {
+    loginService.order = order;
     this.router.navigateByUrl('/intinery');
-    // if (!loginService.getUser().id) {
-    //   return
-    // }
-
-    // const modal = await this.modalController.create({
-    //   component: IntineryComponent,
-    //   componentProps: { value: 123 }
-    // });
-
-    // await modal.present();
-    // const result = await modal.onDidDismiss();
-
-
-    // const alert = await this.alertController.create({
-    //   header: '确认接单[' + order.sender.name + ']?',
-    //   buttons: [
-    //     {
-    //       text: '取消',
-    //       role: 'cancel',
-    //       cssClass: 'secondary',
-    //       handler: () => {
-    //         console.log('Confirm Cancel');
-    //       }
-    //     }, {
-    //       text: '确定',
-    //       handler: data => {
-    //         let tsOrder = new Order();
-    //         tsOrder.setId(order.id)
-    //         tsOrder.setStatus('accept');
-    //         tsOrder.setDriverid(loginService.getUser().id);
-    //         this.ordersClient.update(tsOrder, { 'custom-header-1': 'value1' },
-    //           (err: grpcWeb.Error, response: Order) => {
-    //             console.log(response);
-    //           });
-    //       }
-    //     }
-    //   ]
-    // });
-    // await alert.present();
   }
 
   loadDistance() {
     this.geolocation.getCurrentPosition().then(res => {
       for (var order of this.orders) {
         let p1 = ['' + res.coords.longitude, '' + res.coords.latitude]
-       // console.log('p1', p1);
+        // console.log('p1', p1);
         let p2 = order.from.location.split(',')
-       // console.log('p2', p2);
+        // console.log('p2', p2);
         const dis = AMap.GeometryUtil.distance(p1, p2);
         if (!order.annotations) {
           order.annotations = new Map();

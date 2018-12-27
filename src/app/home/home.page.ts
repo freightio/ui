@@ -1,4 +1,4 @@
-import { Component, Injector, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { ModalController, Slides } from '@ionic/angular';
 import { ModalComponent } from '../modal/map/modal.component';
 import { OrderComponent } from '../modal/order/order.component';
@@ -42,6 +42,7 @@ export class HomePage implements OnInit {
       (err: grpcWeb.Error, response: VehicleList) => {
         if (err) {
           console.log(err)
+          this.ngOnInit();
         }
         for (var i in response.getItemsList()) {
           let tsVehicle = response.getItemsList()[i]

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="success">
     <ion-buttons slot="start">
-      <ion-button href="/home">
+      <ion-button href="/driver">
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -13,17 +13,21 @@
 
 <ion-content>
   <div #map_container class="map_container">
-    <div style="position:absolute; display: inline-block;z-index: 9999">
+    <div style="position:absolute; width: 100%;z-index: 9999">
       <ion-item>
         <ion-avatar slot="start">
           <img src="/assets/icon/favicon.png" />
         </ion-avatar>
         <ion-label>
-          <h2>Finn</h2>
-          <h3>I'm a big deal</h3>
-          <p>Listen, I've had a pretty messed up day...</p>
+          <h3>{{order.from.name}}</h3>
+          <p>{{order.from.address}}</p>
+          <h3>{{order.to.name}}</h3>
+          <p>{{order.to.address}}</p>
         </ion-label>
       </ion-item>
+    </div>
+    <div style="position:absolute;z-index: 9999;bottom:0;width: 100%">
+      <ion-button color="success" (click)="accept()" expand="block">抢 单</ion-button>
     </div>
   </div>
 </ion-content>
