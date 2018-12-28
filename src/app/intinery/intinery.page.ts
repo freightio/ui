@@ -17,6 +17,7 @@ export class IntineryPage implements OnInit {
   map: any; // 地图对象
   order = loginService.order;
   ordersClient = new OrdersClient(environment.apiUrl, null, null);
+  isDisplay = true;
 
   constructor() { }
 
@@ -58,13 +59,19 @@ export class IntineryPage implements OnInit {
     if (!loginService.getUser().id) {
       alert('请登录!')
     }
-    let tsOrder = new Order();
-    tsOrder.setId(this.order.id)
-    tsOrder.setStatus('accept');
-    tsOrder.setDriverid(loginService.getUser().id);
-    this.ordersClient.update(tsOrder, { 'custom-header-1': 'value1' },
-      (err: grpcWeb.Error, response: Order) => {
-        console.log(response);
-      });
+    if (window.confirm('确定接单?')) {
+      let tsOrder = new Order();
+      tsOrder.setId(this.order.id)
+      tsOrder.setStatus('accept');
+      tsOrder.setDriverid(loginService.getUser().id);
+      this.ordersClient.update(tsOrder, { 'custom-header-1': 'value1' },
+        (err: grpcWeb.Error, response: Order) => {
+          console.log(response);
+        });
+    }
+  }
+
+  hidden() {
+    this.isDisplay = !this.isDisplay
   }
 }
