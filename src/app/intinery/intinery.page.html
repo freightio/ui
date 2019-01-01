@@ -14,7 +14,7 @@
 <ion-content>
 
   <div #map_container class="map_container">
-    <div style="position:absolute; width: 100%;z-index: 9999">
+    <div style="position:absolute; width: 100%;z-index: 9999" (swipe)="hidden()">
       <ion-item-group (click)="hidden()">
         <ion-item *ngIf="isDisplay">
           <ion-icon name="time"></ion-icon>
@@ -26,9 +26,9 @@
           </ion-text>
           <ion-label>
             <h3>{{order.from.name}}</h3>
-            <p>○{{order.from.address}}</p>
+            <p>{{order.from.address}}</p>
             <h3>{{order.to.name}}</h3>
-            <p>●{{order.to.address}}</p>
+            <p>{{order.to.address}}</p>
           </ion-label>
           <ion-text color="danger">
             {{order.fee}}元
