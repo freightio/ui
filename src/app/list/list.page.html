@@ -25,12 +25,12 @@
     </ion-segment-button>
   </ion-segment>
 
-  <ion-card *ngFor="let order of orders" (click)="confirm(order)">
+  <ion-card *ngFor="let order of orders">
     <ion-card-header>
       <ion-card-subtitle>{{order.type}}</ion-card-subtitle>
       <ion-item>
         <ion-label>{{order.created | date:'yyyy,MM-dd HH:mm'}}</ion-label>
-        <ion-toggle slot="end" checked></ion-toggle>
+        <ion-toggle slot="end" [checked]="status=='accept'" [disabled]="status!='accept'" (ionChange)="confirm(order)"></ion-toggle>
       </ion-item>
     </ion-card-header>
     <ion-card-content>

@@ -70,7 +70,8 @@ export class ListPage implements OnInit {
       return
     }
     const alert = await this.alertController.create({
-      header: '确认订单[' + order.sender.name + ']已完成?',
+      subHeader: '确认订单[' + order.sender.name + ']已完成?',
+      message: '费用[' + order.fee + '元]将打入您的个人钱包中.',
       buttons: [
         {
           text: '取消',
