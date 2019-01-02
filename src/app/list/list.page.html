@@ -30,7 +30,7 @@
       <ion-card-subtitle>{{order.type}}</ion-card-subtitle>
       <ion-item>
         <ion-label>{{order.created | date:'yyyy,MM-dd HH:mm'}}</ion-label>
-        <ion-toggle slot="end" [checked]="status=='accept'" [disabled]="status!='accept'" (ionChange)="confirm(order)"></ion-toggle>
+        <ion-toggle slot="end" [disabled]="status!='accept'" (ionChange)="confirm(order)"></ion-toggle>
       </ion-item>
     </ion-card-header>
     <ion-card-content>
