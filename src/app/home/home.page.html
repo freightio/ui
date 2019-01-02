@@ -25,7 +25,7 @@
       <ion-icon *ngIf="showLeftButton" name="arrow-back"></ion-icon>
     </ion-col>
     <ion-col>
-      <ion-img [src]="currentVehicle?.image"></ion-img>
+      <ion-img [src]="currentVehicle?.image" class="freight-size"></ion-img>
     </ion-col>
     <ion-col text-end (click)="slideNext()">
       <ion-icon *ngIf="showRightButton" name="arrow-forward"></ion-icon>
