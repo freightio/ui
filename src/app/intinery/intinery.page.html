@@ -13,8 +13,8 @@
 
 <ion-content>
   <div #map_container class="map_container">
-    <div style="position:absolute; width: 100%;z-index: 9999;opacity:0.8;">
-      <ion-item-group (click)="hidden()" on-swipe-up="hidden()">
+    <div style="position:absolute; width: 100%;z-index: 9999" ontouchmove="hidden()">
+      <ion-item-group (click)="hidden()">
         <ion-item *ngIf="isDisplay">
           <ion-icon name="time"></ion-icon>
           {{order.created | date:'MM-dd HH:mm'}}
