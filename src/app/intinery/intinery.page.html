@@ -13,7 +13,7 @@
 
 <ion-content>
   <div #map_container class="map_container">
-    <div style="position:absolute; width: 100%;z-index: 9999">
+    <div style="position:absolute; width: 100%;z-index: 9999;opacity:0.8;">
       <ion-item-group (click)="hidden()" on-swipe-up="hidden()">
         <ion-item *ngIf="isDisplay">
           <ion-icon name="time"></ion-icon>
@@ -37,7 +37,7 @@
           </ion-text>
         </ion-item>
         <ion-item>
-          <ion-icon name="arrow-dropdown"></ion-icon>
+          <ion-icon name="arrow-dropup"></ion-icon>
         </ion-item>
       </ion-item-group>
     </div>
