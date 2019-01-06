@@ -22,11 +22,9 @@ export class IntineryPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    var div = document.getElementById('abcde');
-    div.ontouchmove = function (e) {
-      //可为touchstart、touchmove事件加上preventDefault从而阻止触摸时浏览器的缩放、滚动条滚动等
-      window.alert('moving...');
-    };
+    // document.getElementById('detail_order').ontouchmove = (e) => {
+    //   this.hidden();
+    // };
     this.map = new AMap.Map(this.map_container.nativeElement, {
       view: new AMap.View2D({
         zoom: 11,
@@ -76,7 +74,7 @@ export class IntineryPage implements OnInit {
     }
   }
 
-  hidden() {
+  public hidden() {
     this.isDisplay = !this.isDisplay
   }
 }
