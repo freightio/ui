@@ -22,7 +22,7 @@ export class IntineryPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    var div = document.getElementById('map_container');
+    var div = document.getElementById('abcde');
     div.ontouchmove = function (e) {
       //可为touchstart、touchmove事件加上preventDefault从而阻止触摸时浏览器的缩放、滚动条滚动等
       window.alert('moving...');
