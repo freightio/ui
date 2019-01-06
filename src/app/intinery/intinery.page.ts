@@ -22,6 +22,11 @@ export class IntineryPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    var div = document.getElementById('map_container');
+    div.ontouchmove = function (e) {
+      //可为touchstart、touchmove事件加上preventDefault从而阻止触摸时浏览器的缩放、滚动条滚动等
+      window.alert('moving...');
+    };
     this.map = new AMap.Map(this.map_container.nativeElement, {
       view: new AMap.View2D({
         zoom: 11,
@@ -30,7 +35,7 @@ export class IntineryPage implements OnInit {
         showBuildingBlock: true
       })
     });
-    this.map.setMapStyle("amap://styles/light");
+    this.map.setMapStyle('amap://styles/light');
     AMap.service('AMap.Geolocation', () => {
       const geolocation = new AMap.Geolocation({});
       //this.map.addControl(geolocation);
