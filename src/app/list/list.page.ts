@@ -108,28 +108,39 @@ export class ListPage implements OnInit {
     await alert.present();
   }
 
-  navigate(order: any) {
-    if (window.confirm('开启导航?')) {
-      var endLngLat = order.to.location.split(',');
-      let gaodeApp = startApp.set(
+  async navigate(order: any) {
+    const alert = await this.alertController.create({
+      header: '开启导航?',
+      buttons: [
         {
-          'action': 'ACTION_VIEW',
-          'category': 'CATEGORY_DEFAULT',
-          'type': 'text/css',
-          'package': 'com.autonavi.minimap',
-          'uri': 'androidamap://navi?sourceApplication=appname&poiname=' + 'this.item.work_address' + '&lat=' + endLngLat[1] + '&lon=' + endLngLat[0] + '&dev=0',
-          'flags': ['FLAG_ACTIVITY_CLEAR_TOP', 'FLAG_ACTIVITY_CLEAR_TASK'],
-          'intentstart': 'startActivity',
-        }, { /* extras */
-          'EXTRA_STREAM': 'extraValue1',
-          'extraKey2': 'extraValue2'
+          text: '取消',
+        }, {
+          text: '确定',
+          handler: data => {
+            var endLngLat = order.to.location.split(',');
+            let gaodeApp = startApp.set(
+              {
+                'action': 'ACTION_VIEW',
+                'category': 'CATEGORY_DEFAULT',
+                'type': 'text/css',
+                'package': 'com.autonavi.minimap',
+                'uri': 'androidamap://navi?sourceApplication=appname&poiname=' + 'this.item.work_address' + '&lat=' + endLngLat[1] + '&lon=' + endLngLat[0] + '&dev=0',
+                'flags': ['FLAG_ACTIVITY_CLEAR_TOP', 'FLAG_ACTIVITY_CLEAR_TASK'],
+                'intentstart': 'startActivity',
+              }, { /* extras */
+                'EXTRA_STREAM': 'extraValue1',
+                'extraKey2': 'extraValue2'
+              }
+            );
+            gaodeApp.start(function () {
+              // alert('gaode ok')
+            }, function (error) {
+              window.alert(error)
+            })
+          }
         }
-      );
-      gaodeApp.start(function () {
-        // alert('gaode ok')
-      }, function (error) {
-        alert(error)
-      })
-    }
+      ]
+    });
+    await alert.present();
   }
 }
