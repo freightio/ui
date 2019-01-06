@@ -22,9 +22,9 @@ export class IntineryPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    // document.getElementById('detail_order').ontouchmove = (e) => {
-    //   this.hidden();
-    // };
+    document.getElementById('detail_order').ontouchmove = (e) => {
+      this.hidden();
+    };
     this.map = new AMap.Map(this.map_container.nativeElement, {
       view: new AMap.View2D({
         zoom: 11,
