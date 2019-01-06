@@ -25,7 +25,7 @@
     </ion-segment-button>
   </ion-segment>
 
-  <ion-card *ngFor="let order of orders">
+  <ion-card *ngFor="let order of orders" (click)="navigate(order)">
     <ion-card-header>
       <ion-card-subtitle>{{order.type}}</ion-card-subtitle>
       <ion-item>

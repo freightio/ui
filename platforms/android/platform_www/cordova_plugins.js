@@ -146,6 +146,14 @@ module.exports = [
     "clobbers": [
       "cordova.plugins.alipay"
     ]
+  },
+  {
+    "id": "com.lampa.startapp.startapp",
+    "file": "plugins/com.lampa.startapp/www/startApp.js",
+    "pluginId": "com.lampa.startapp",
+    "merges": [
+      "startApp"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -160,7 +168,8 @@ module.exports.metadata =
   "phonegap-plugin-barcodescanner": "8.0.1",
   "cordova-plugin-geolocation": "4.0.1",
   "cordova-plugin-contacts": "3.0.1",
-  "cordova-plugin-alipay": "0.0.1"
+  "cordova-plugin-alipay": "0.0.1",
+  "com.lampa.startapp": "6.1.6"
 };
 // BOTTOM OF METADATA
 });

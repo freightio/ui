@@ -47,6 +47,10 @@
             {
               "xml": "<preference name=\"SANDBOX_MODE\" value=\"false\" />",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"startApp\"><param name=\"android-package\" value=\"com.lampa.startapp.startApp\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -186,6 +190,9 @@
     "cordova-plugin-alipay": {
       "APP_ID": "2018111762227213",
       "SANDBOX_MODE": "false",
+      "PACKAGE_NAME": "io.freight.starter"
+    },
+    "com.lampa.startapp": {
       "PACKAGE_NAME": "io.freight.starter"
     }
   },
@@ -337,6 +344,14 @@
       "clobbers": [
         "cordova.plugins.alipay"
       ]
+    },
+    {
+      "id": "com.lampa.startapp.startapp",
+      "file": "plugins/com.lampa.startapp/www/startApp.js",
+      "pluginId": "com.lampa.startapp",
+      "merges": [
+        "startApp"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -349,6 +364,7 @@
     "phonegap-plugin-barcodescanner": "8.0.1",
     "cordova-plugin-geolocation": "4.0.1",
     "cordova-plugin-contacts": "3.0.1",
-    "cordova-plugin-alipay": "0.0.1"
+    "cordova-plugin-alipay": "0.0.1",
+    "com.lampa.startapp": "6.1.6"
   }
 }
