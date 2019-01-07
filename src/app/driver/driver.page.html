@@ -53,5 +53,16 @@
     <ion-tab tab="settings" class="tab-css">
       <p>城际订单</p>
     </ion-tab>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home">
+        <ion-label>抢单</ion-label>
+        <ion-icon name="home"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button href="/ongoing">
+        <ion-label>进行中</ion-label>
+        <ion-icon name="settings"></ion-icon>
+        <ion-badge color="success">6</ion-badge>
+      </ion-tab-button>
+    </ion-tab-bar>
   </ion-tabs>
 </ion-content>

@@ -23,7 +23,8 @@ const routes: Routes = [
   { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
   { path: 'login', loadChildren: './user/login/login.module#LoginPageModule' },
   { path: 'signup', loadChildren: './user/signup/signup.module#SignupPageModule' },
-  { path: 'intinery', loadChildren: './intinery/intinery.module#IntineryPageModule' }
+  { path: 'intinery', loadChildren: './intinery/intinery.module#IntineryPageModule' },
+  { path: 'ongoing', loadChildren: './driver/ongoing/ongoing.module#OngoingPageModule' }
 ];
 
 @NgModule({
