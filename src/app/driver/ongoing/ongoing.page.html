@@ -2,7 +2,7 @@
   <ion-toolbar color="success">
     <ion-buttons slot="start">
       <ion-button href="/home">
-        <ion-icon name="arrow-back"></ion-icon>
+        <ion-icon name="bus"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title>
@@ -14,25 +14,25 @@
 <ion-content padding>
   <ion-tabs>
     <ion-tab tab="ongoing">
-        <ion-card *ngFor="let order of orders" (click)="navigate(order)">
-            <ion-card-header>
-              <ion-card-subtitle>{{order.type}}</ion-card-subtitle>
-              <ion-item>
-                <ion-label>{{order.created | date:'yyyy,MM-dd HH:mm'}}</ion-label>
-                <ion-toggle slot="end"></ion-toggle>
-              </ion-item>
-            </ion-card-header>
-            <ion-card-content>
-              <p>
-                <ion-icon name="log-out"></ion-icon>{{order.from?.name}}
-              </p>
-              <p>
-                <ion-icon name="log-in"></ion-icon>{{order.to?.name}}
-              </p>
-            </ion-card-content>
-          </ion-card>
+      <ion-card *ngFor="let order of orders" (click)="navigate(order)">
+        <ion-card-header>
+          <ion-card-subtitle>{{order.type}}</ion-card-subtitle>
+          <ion-item>
+            <ion-label>{{order.created | date:'yyyy,MM-dd HH:mm'}}</ion-label>
+            <ion-toggle slot="end"></ion-toggle>
+          </ion-item>
+        </ion-card-header>
+        <ion-card-content>
+          <p>
+            <ion-icon name="log-out"></ion-icon>{{order.from?.name}}
+          </p>
+          <p>
+            <ion-icon name="log-in"></ion-icon>{{order.to?.name}}
+          </p>
+        </ion-card-content>
+      </ion-card>
     </ion-tab>
-    <ion-tab-bar slot="bottom">
+    <ion-tab-bar slot="bottom" color="success">
       <ion-tab-button tab="home" href="/driver">
         <ion-label>抢单</ion-label>
         <ion-icon name="home"></ion-icon>
@@ -40,7 +40,7 @@
       <ion-tab-button tab="ongoing">
         <ion-label>进行中</ion-label>
         <ion-icon name="settings"></ion-icon>
-        <ion-badge color="success">6</ion-badge>
+        <ion-badge>6</ion-badge>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
