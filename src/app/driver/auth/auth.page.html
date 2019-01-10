@@ -1,9 +1,33 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>auth</ion-title>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-button href="/home">
+        <ion-icon name="bus"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      认证
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-    <ion-button (click)="take()" color="success" shape="round">拍照</ion-button>
+  <ion-button (click)="take()" color="success" shape="round">拍照</ion-button>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home" href="/driver">
+        <ion-label>抢单</ion-label>
+        <ion-icon name="home"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button tab="ongoing" href="/ongoing">
+        <ion-label>进行中</ion-label>
+        <ion-icon name="settings"></ion-icon>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+      <ion-tab-button>
+        <ion-label>认证</ion-label>
+        <ion-icon name="key"></ion-icon>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>
