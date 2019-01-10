@@ -2,9 +2,11 @@ import * as grpcWeb from 'grpc-web';
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { User } from '../../../sdk/user_pb';
+import { Account } from '../../../sdk/wallet_pb';
+import { WalletsClient } from '../../../sdk/wallet_grpc_web_pb';
 import { environment } from '../../../environments/environment';
 import { OrdersClient } from '../../../sdk/order_grpc_web_pb';
-import { OrderList, Position } from '../../../sdk/order_pb';
+import { OrderList, Order } from '../../../sdk/order_pb';
 import { loginService } from '../../providers/util.service';
 
 declare var startApp;
@@ -17,6 +19,7 @@ declare var startApp;
 export class OngoingPage implements OnInit {
   orders = [];
   ordersClient = new OrdersClient(environment.apiUrl, null, null);
+  walletsClient = new WalletsClient(environment.apiUrl, null, null);
 
   constructor(private alertController: AlertController) { }
 
@@ -73,6 +76,51 @@ export class OngoingPage implements OnInit {
               }
             );
             gaodeApp.start()
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async finish(order) {
+    if (order.status != 'accept') {
+      return
+    }
+    if (loginService.getUser().id != order.driverid) {
+      window.alert('仅司机可确认订单!');
+      return
+    }
+    const alert = await this.alertController.create({
+      subHeader: '确认订单[' + order.sender.name + ']已完成?',
+      message: '费用[' + order.fee + '元]将打入您的个人钱包中.',
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: '确定',
+          handler: data => {
+            //TODO:put to backend in transaction
+            let tsOrder = new Order();
+            tsOrder.setId(order.id)
+            tsOrder.setStatus('done');
+            this.ordersClient.update(tsOrder, { 'custom-header-1': 'value1' },
+              (err: grpcWeb.Error, response: Order) => {
+                console.log(response);
+              });
+
+            let account = new Account();
+            account.setFee(order.fee);
+            account.setOrderid(order.id);
+            account.setUserid(order.driverid);
+            this.walletsClient.add(account, {}, (err: grpcWeb.Error, response: Account) => {
+              console.log(response);
+            })
           }
         }
       ]

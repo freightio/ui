@@ -13,8 +13,8 @@
 
 <ion-content padding>
   <ion-tabs>
-    <ion-tab tab="ongoing">
-      <ion-card *ngFor="let order of orders" (click)="navigate(order)">
+    <ion-tab tab="ongoing" style="display: block;">
+      <ion-card *ngFor="let order of orders">
         <ion-card-header>
           <ion-card-subtitle>{{order.type}}</ion-card-subtitle>
           <ion-item>
@@ -30,9 +30,13 @@
             <ion-icon name="log-in"></ion-icon>{{order.to?.name}}
           </p>
         </ion-card-content>
+        <ion-item>
+          <ion-button (click)="navigate(order)" color="success" shape="round" slot="end">导航</ion-button>
+          <ion-button (click)="finish(order)" color="success" shape="round" slot="end">完成</ion-button>
+        </ion-item>
       </ion-card>
     </ion-tab>
-    <ion-tab-bar slot="bottom" color="success">
+    <ion-tab-bar slot="bottom">
       <ion-tab-button tab="home" href="/driver">
         <ion-label>抢单</ion-label>
         <ion-icon name="home"></ion-icon>
@@ -41,6 +45,10 @@
         <ion-label>进行中</ion-label>
         <ion-icon name="settings"></ion-icon>
         <ion-badge>6</ion-badge>
+      </ion-tab-button>
+      <ion-tab-button tab="key">
+        <ion-label>认证</ion-label>
+        <ion-icon name="key"></ion-icon>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
