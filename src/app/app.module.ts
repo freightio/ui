@@ -7,7 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-
+import { Camera } from '@ionic-native/camera/ngx';
 import { Contacts } from '@ionic-native/contacts/ngx';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -30,6 +30,7 @@ import { OrderComponent } from './modal/order/order.component';
     Geolocation,
     BarcodeScanner,
     Contacts,
+    Camera,
     Slides,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

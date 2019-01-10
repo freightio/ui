@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~6.1.1",
     "@angular/router": "~6.1.1",
     "@ionic-native/barcode-scanner": "^5.0.0-beta.21",
+    "@ionic-native/camera": "^5.0.0-beta.23",
     "@ionic-native/contacts": "^5.0.0-beta.21",
     "@ionic-native/core": "5.0.0-beta.21",
     "@ionic-native/geolocation": "^5.0.0-beta.21",
@@ -31,6 +32,7 @@
     "com.lampa.startapp": "^6.1.6",
     "cordova-android": "7.1.4",
     "cordova-plugin-alipay": "git+https://github.com/ejiyuan/cordova-plugin-alipay.git",
+    "cordova-plugin-camera": "4.0.3",
     "cordova-plugin-contacts": "^3.0.1",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-geolocation": "^4.0.1",
@@ -99,7 +101,8 @@
         "APP_ID": "2018111762227213",
         "SANDBOX_MODE": "false"
       },
-      "com.lampa.startapp": {}
+      "com.lampa.startapp": {},
+      "cordova-plugin-camera": {}
     },
     "platforms": [
       "android"

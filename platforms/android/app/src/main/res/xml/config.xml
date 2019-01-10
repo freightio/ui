@@ -30,6 +30,9 @@
     <feature name="startApp">
         <param name="android-package" value="com.lampa.startapp.startApp" />
     </feature>
+    <feature name="Camera">
+        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+    </feature>
     <allow-navigation href="http://localhost:8080/*" />
     <feature name="IonicWebView">
         <param name="android-package" value="com.ionicframework.cordova.webview.IonicWebView" />

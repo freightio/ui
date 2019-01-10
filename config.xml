@@ -94,5 +94,6 @@
         <variable name="SANDBOX_MODE" value="false" />
     </plugin>
     <plugin name="com.lampa.startapp" spec="^6.1.6" />
+    <plugin name="cordova-plugin-camera" spec="4.0.3" />
     <engine name="android" spec="7.1.4" />
 </widget>
