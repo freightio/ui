@@ -5,12 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DriverPage } from './driver.page';
+import { GrabPage } from './grab.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: DriverPage
+    component: GrabPage
   }
 ];
 
@@ -21,6 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [DriverPage]
+  declarations: [GrabPage]
 })
-export class DriverPageModule {}
+export class GrabPageModule {}

@@ -13,7 +13,7 @@ export class AuthPage implements OnInit {
   ngOnInit() {
   }
 
-  take() {
+  takePhoto() {
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.FILE_URI,

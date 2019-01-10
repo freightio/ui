@@ -2,20 +2,20 @@ import * as grpcWeb from 'grpc-web';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { environment } from '../../environments/environment';
-import { OrdersClient } from '../../sdk/order_grpc_web_pb';
-import { OrderList, Position } from '../../sdk/order_pb';
-import { loginService } from '../providers/util.service';
+import { environment } from '../../../environments/environment';
+import { OrdersClient } from '../../../sdk/order_grpc_web_pb';
+import { OrderList, Position } from '../../../sdk/order_pb';
+import { loginService } from '../../providers/util.service';
 
 //declare var proto;
 declare var AMap;
 
 @Component({
-  selector: 'app-driver',
-  templateUrl: './driver.page.html',
-  styleUrls: ['./driver.page.scss'],
+  selector: 'app-grab',
+  templateUrl: './grab.page.html',
+  styleUrls: ['./grab.page.scss'],
 })
-export class DriverPage implements OnInit {
+export class GrabPage implements OnInit {
   orders = [];
   ordersClient = new OrdersClient(environment.apiUrl, null, null);
 
@@ -90,4 +90,5 @@ export class DriverPage implements OnInit {
       console.log(e);
     });
   }
+
 }

@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DriverPage } from './driver.page';
+import { GrabPage } from './grab.page';
 
-describe('DriverPage', () => {
-  let component: DriverPage;
-  let fixture: ComponentFixture<DriverPage>;
+describe('GrabPage', () => {
+  let component: GrabPage;
+  let fixture: ComponentFixture<GrabPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DriverPage ],
+      declarations: [ GrabPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DriverPage);
+    fixture = TestBed.createComponent(GrabPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
