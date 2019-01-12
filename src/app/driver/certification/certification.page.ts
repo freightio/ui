@@ -40,7 +40,9 @@ export class CertificationPage implements OnInit {
     certification.setUserid(loginService.getUser().id);
     certification.setName(name);
     const options: CameraOptions = {
-      //quality: 100,
+      quality: 10,
+      targetWidth: 20,
+      targetHeight: 20,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
