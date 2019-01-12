@@ -2,7 +2,7 @@ import * as grpcWeb from 'grpc-web';
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { CertificationsClient } from '../../../sdk/user_grpc_web_pb';
-import { CertificationList, Certification, UserRequest } from '../../../sdk/user_pb';
+import { Certification, UserRequest } from '../../../sdk/user_pb';
 import { environment } from '../../../environments/environment';
 import { loginService } from '../../providers/util.service';
 
@@ -12,23 +12,34 @@ import { loginService } from '../../providers/util.service';
   styleUrls: ['./certification.page.scss'],
 })
 export class CertificationPage implements OnInit {
+  isAdmin = false;
   certifications = [];
+  certificationsAdmin = [];
   certificationsClient = new CertificationsClient(environment.apiUrl, null, null);
 
-  constructor(private camera: Camera) { }
+  constructor(private camera: Camera) {
+    if (loginService.getUser() && (loginService.getUser().name == "jmzwcn")) {
+      this.isAdmin = true;
+    }
+  }
 
   ngOnInit() {
-    let userRequest = new UserRequest();
-    userRequest.setId(loginService.getUser().id);
-    this.certificationsClient.list(userRequest, {}, (err: grpcWeb.Error, response: CertificationList) => {
-      if (err) {
-        console.log(err);
-      } else {
-        for (var i in response.getItemsList()) {
-          let tsCertification = response.getItemsList()[i]
-          this.certifications[i] = tsCertification.toObject();
-        };
-      }
+    var i = 0;
+    let cert = new Certification();
+    cert.setUserid(loginService.getUser().id);
+    let stream = this.certificationsClient.list(cert, {});
+    stream.on('data', response => {
+      this.certifications[i] = response.toObject();
+      i = i + 1;
+    });
+
+    var j = 0;
+    let certAdmin = new Certification();
+    certAdmin.setStatus('new');
+    let streamAdmin = this.certificationsClient.list(certAdmin, {});
+    streamAdmin.on('data', response => {
+      this.certificationsAdmin[j] = response.toObject();
+      j = j + 1;
     });
   }
 
@@ -36,6 +47,7 @@ export class CertificationPage implements OnInit {
     let certification = new Certification();
     certification.setUserid(loginService.getUser().id);
     certification.setName(name);
+    certification.setStatus('new');
     const options: CameraOptions = {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
@@ -43,8 +55,6 @@ export class CertificationPage implements OnInit {
     }
 
     this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       certification.setImagedata(base64Image);
       this.certificationsClient.add(certification, {}, (err: grpcWeb.Error, response: Certification) => {
@@ -55,8 +65,18 @@ export class CertificationPage implements OnInit {
         }
       });
     }, (err) => {
-      // Handle error
       alert(JSON.stringify(err));
+    });
+  }
+
+  pass(certification: Certification) {
+    certification.setStatus('pass');
+    this.certificationsClient.update(certification, {}, (err: grpcWeb.Error, response: Certification) => {
+      if (err) {
+        alert(JSON.stringify(err));
+      } else {
+        this.ngOnInit();
+      }
     });
   }
 }
