@@ -13,7 +13,7 @@
 
 <ion-content padding>
   <ion-tabs>
-    <ion-tab tab="certification" style="display: block;">
+    <ion-tab tab="certification" style="display: block;overflow-y: auto">
       <ion-card>
         <ion-card-header>
           <ion-card-subtitle>司机认证</ion-card-subtitle>
@@ -36,7 +36,7 @@
       </ion-card>
       <ion-item *ngFor="let certification of certifications">
         <p>{{certification.name}}</p>
-        <img [src]="certification.imageData">
+        <img [src]="certification.imagedata" height="150px" width="150px">
       </ion-item>
     </ion-tab>
     <!-- Tab bar -->
