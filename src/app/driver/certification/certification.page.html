@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-button href="/home">
+        <ion-icon name="bus"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      认证
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-tabs>
+    <ion-tab tab="certification" style="display: block;">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>司机认证</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-button (click)="takePhoto('驾驶证')" color="success" shape="round">驾驶证拍照</ion-button>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>车辆认证</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-button (click)="takePhoto('行驶证')" color="success" shape="round">行驶证拍照</ion-button>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+      <ion-item *ngFor="let certification of certifications">
+        <p>{{certification.name}}</p>
+        <img [src]="certification.imageData">
+        </ion-item>
+    </ion-tab>
+    <!-- Tab bar -->
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home" href="/grab">
+        <ion-label>抢单</ion-label>
+        <ion-icon name="home"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button href="/ongoing">
+        <ion-label>进行中</ion-label>
+        <ion-icon name="settings"></ion-icon>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+      <ion-tab-button tab="certification">
+        <ion-label>认证</ion-label>
+        <ion-icon name="key"></ion-icon>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

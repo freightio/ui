@@ -11,8 +11,8 @@ const routes: Routes = [
   { path: 'signup', loadChildren: './user/signup/signup.module#SignupPageModule' },
   { path: 'intinery', loadChildren: './intinery/intinery.module#IntineryPageModule' },
   { path: 'ongoing', loadChildren: './driver/ongoing/ongoing.module#OngoingPageModule' },
-  { path: 'auth', loadChildren: './driver/auth/auth.module#AuthPageModule' },
-  { path: 'grab', loadChildren: './driver/grab/grab.module#GrabPageModule' }
+  { path: 'grab', loadChildren: './driver/grab/grab.module#GrabPageModule' },
+  { path: 'certification', loadChildren: './driver/certification/certification.module#CertificationPageModule' }
 ];
 
 @NgModule({
