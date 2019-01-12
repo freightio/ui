@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { Platform, MenuController, Events } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { loginService } from './providers/util.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent {
   username = '登录';
+  isAdmin = false;
   public appPages = [
     {
       title: '首页',
@@ -42,10 +44,6 @@ export class AppComponent {
     public menuCtrl: MenuController
   ) {
     this.initializeApp();
-    let localUser = window.localStorage.getItem('user');
-    if (localUser) {
-      this.username = JSON.parse(localUser).name;
-    }
   }
 
   initializeApp() {
@@ -53,6 +51,16 @@ export class AppComponent {
       this.statusBar.styleBlackTranslucent();
       this.splashScreen.hide();
       this.listenForLoginEvents();
+
+      if (window.localStorage.getItem('user')) {
+        this.username = loginService.getUser().name;
+      }
+      if (loginService.getUser() && (
+        loginService.getUser().tel == '15311410699' ||
+        loginService.getUser().tel == '18819116381')
+      ) {
+        this.isAdmin = true;
+      }
     });
   }
 
@@ -63,7 +71,7 @@ export class AppComponent {
 
   listenForLoginEvents() {
     this.events.subscribe('user:login', (username) => {
-      this.username = username;
+      this.initializeApp();
     });
   }
 }

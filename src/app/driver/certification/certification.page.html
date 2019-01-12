@@ -34,26 +34,19 @@
           </ion-item>
         </ion-card-content>
       </ion-card>
-      <ion-item *ngFor="let certification of certifications">
-        <p>{{certification.name}}</p>
-        <img [src]="certification.imagedata" height="150px" width="150px">
-      </ion-item>
-      <div *ngIf="isAdmin">
-        审核列表
-        <ion-grid>
-          <ion-row *ngFor="let certification of certificationsAdmin">
-            <ion-col text-center>
-              {{certification.name}}
-            </ion-col>
-            <ion-col text-center>
-              <img [src]="certification.imagedata" height="150px" width="150px">
-            </ion-col>
-            <ion-col text-center>
-              <ion-checkbox (ionChange)="pass(certification)"></ion-checkbox>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
+      <ion-grid>
+        <ion-row *ngFor="let certification of certifications">
+          <ion-col text-center>
+            {{certification.name}}
+          </ion-col>
+          <ion-col text-center>
+            <img [src]="certification.imagedata" height="150px" width="150px">
+          </ion-col>
+          <ion-col text-center>
+            {{certification.status}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-tab>
     <!-- Tab bar -->
     <ion-tab-bar slot="bottom">

@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>证件审核</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  审核列表
+  <ion-grid>
+    <ion-row *ngFor="let certification of certificationsAdmin">
+      <ion-col text-center>
+        {{certification.name}}
+      </ion-col>
+      <ion-col text-center>
+        <img [src]="certification.imagedata" height="150px" width="150px">
+      </ion-col>
+      <ion-col text-center>
+        <ion-checkbox (ionChange)="pass(certification)"></ion-checkbox>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -28,6 +28,19 @@
             <ion-icon slot="start" name="bus"></ion-icon> 切换为司机
           </ion-button>
         </ion-menu-toggle>
+        <ion-card *ngIf="isAdmin">
+          <ion-card-header>
+            <ion-card-subtitle>管理区域</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-menu-toggle auto-hide="false">
+              <ion-item [routerDirection]="'root'" routerLink="/verify">
+                <ion-icon slot="start" name="lock"></ion-icon>
+                <ion-label> 证件审核 </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-card-content>
+        </ion-card>
       </ion-content>
     </ion-menu>
     <ion-router-outlet main></ion-router-outlet>

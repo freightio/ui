@@ -14,7 +14,6 @@ import { loginService } from '../../providers/util.service';
 export class CertificationPage implements OnInit {
   isAdmin = false;
   certifications = [];
-  certificationsAdmin = [];
   certificationsClient = new CertificationsClient(environment.apiUrl, null, null);
 
   constructor(private camera: Camera) {
@@ -31,15 +30,6 @@ export class CertificationPage implements OnInit {
     stream.on('data', response => {
       this.certifications[i] = response.toObject();
       i = i + 1;
-    });
-
-    var j = 0;
-    let certAdmin = new Certification();
-    certAdmin.setStatus('new');
-    let streamAdmin = this.certificationsClient.list(certAdmin, {});
-    streamAdmin.on('data', response => {
-      this.certificationsAdmin[j] = response.toObject();
-      j = j + 1;
     });
   }
 
@@ -66,21 +56,6 @@ export class CertificationPage implements OnInit {
       });
     }, (err) => {
       alert(JSON.stringify(err));
-    });
-  }
-
-  pass(certification: Certification) {
-    if (certification.getStatus() == 'new') {
-      certification.setStatus('pass');
-    } else {
-      certification.setStatus('new');
-    }
-    this.certificationsClient.update(certification, {}, (err: grpcWeb.Error, response: Certification) => {
-      if (err) {
-        alert(JSON.stringify(err));
-      } else {
-        this.ngOnInit();
-      }
     });
   }
 }

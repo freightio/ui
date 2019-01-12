@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: 'intinery', loadChildren: './intinery/intinery.module#IntineryPageModule' },
   { path: 'ongoing', loadChildren: './driver/ongoing/ongoing.module#OngoingPageModule' },
   { path: 'grab', loadChildren: './driver/grab/grab.module#GrabPageModule' },
-  { path: 'certification', loadChildren: './driver/certification/certification.module#CertificationPageModule' }
+  { path: 'certification', loadChildren: './driver/certification/certification.module#CertificationPageModule' },
+  { path: 'verify', loadChildren: './admin/verify/verify.module#VerifyPageModule' }
 ];
 
 @NgModule({
