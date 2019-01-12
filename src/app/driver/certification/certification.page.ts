@@ -12,6 +12,7 @@ import { loginService } from '../../providers/util.service';
   styleUrls: ['./certification.page.scss'],
 })
 export class CertificationPage implements OnInit {
+  testimageData: string
   certifications = [];
   certificationsClient = new CertificationsClient(environment.apiUrl, null, null);
 
@@ -53,7 +54,8 @@ export class CertificationPage implements OnInit {
         if (err) {
           alert(JSON.stringify(err));
         } else {
-          this.ngOnInit();
+          //this.ngOnInit();
+          this.testimageData = base64Image;
         }
       });
     }, (err) => {
