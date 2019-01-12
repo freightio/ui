@@ -51,7 +51,7 @@ export class CertificationPage implements OnInit {
       certification.setImagedata(base64Image);
       this.certificationsClient.add(certification, {}, (err: grpcWeb.Error, response: Certification) => {
         if (err) {
-          alert(err);
+          alert(JSON.stringify(err));
         } else {
           this.ngOnInit();
         }
