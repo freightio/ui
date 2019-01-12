@@ -41,7 +41,7 @@
       <div *ngIf="isAdmin">
         审核列表
         <ion-grid>
-          <ion-row *ngFor="let certification of certificationsAdmin">
+          <ion-row *ngFor="let certification of certificationsAdmin" align-items-center>
             <ion-col>
               {{certification.name}}
             </ion-col>
