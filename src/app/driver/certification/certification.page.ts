@@ -70,7 +70,11 @@ export class CertificationPage implements OnInit {
   }
 
   pass(certification: Certification) {
-    certification.setStatus('pass');
+    if (certification.getStatus() == 'new') {
+      certification.setStatus('pass');
+    } else {
+      certification.setStatus('new');
+    }
     this.certificationsClient.update(certification, {}, (err: grpcWeb.Error, response: Certification) => {
       if (err) {
         alert(JSON.stringify(err));

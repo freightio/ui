@@ -39,12 +39,20 @@
         <img [src]="certification.imagedata" height="150px" width="150px">
       </ion-item>
       <div *ngIf="isAdmin">
-        审核
-        <ion-item *ngFor="let certification of certificationsAdmin">
-          <p>{{certification.name}}</p>
-          <img [src]="certification.imagedata" height="150px" width="150px">
-          <ion-checkbox color="secondary" (click)="pass(certification)"></ion-checkbox>
-        </ion-item>
+        审核列表
+        <ion-grid>
+          <ion-row *ngFor="let certification of certificationsAdmin">
+            <ion-col>
+              {{certification.name}}
+            </ion-col>
+            <ion-col>
+              <img [src]="certification.imagedata" height="150px" width="150px">
+            </ion-col>
+            <ion-col>
+              <ion-checkbox (ionChange)="pass(certification)"></ion-checkbox>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </div>
     </ion-tab>
     <!-- Tab bar -->
