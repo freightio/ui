@@ -55,7 +55,7 @@ export class CertificationPage implements OnInit {
           alert(JSON.stringify(err));
         } else {
           //this.ngOnInit();
-          this.testimageData = base64Image;
+          this.certifications[0].imageData = base64Image;
         }
       });
     }, (err) => {
