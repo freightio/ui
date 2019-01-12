@@ -12,15 +12,10 @@ import { loginService } from '../../providers/util.service';
   styleUrls: ['./certification.page.scss'],
 })
 export class CertificationPage implements OnInit {
-  isAdmin = false;
   certifications = [];
   certificationsClient = new CertificationsClient(environment.apiUrl, null, null);
 
-  constructor(private camera: Camera) {
-    if (loginService.getUser() && (loginService.getUser().name == "jmzwcn")) {
-      this.isAdmin = true;
-    }
-  }
+  constructor(private camera: Camera) { }
 
   ngOnInit() {
     var i = 0;
@@ -29,7 +24,7 @@ export class CertificationPage implements OnInit {
     let stream = this.certificationsClient.list(cert, {});
     stream.on('data', response => {
       this.certifications[i] = response.toObject();
-      i = i + 1;
+      i++;
     });
   }
 
