@@ -60,6 +60,8 @@ export class AppComponent {
         loginService.getUser().tel == '18819116381')
       ) {
         this.isAdmin = true;
+      } else {
+        this.isAdmin = false;
       }
     });
   }

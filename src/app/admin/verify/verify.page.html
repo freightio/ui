@@ -1,6 +1,13 @@
 <ion-header>
   <ion-toolbar color="success">
-    <ion-title>证件审核</ion-title>
+    <ion-buttons slot="start">
+      <ion-button href="/home">
+        <ion-icon name="lock"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      证件审核
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,6 +15,9 @@
   审核列表
   <ion-grid>
     <ion-row *ngFor="let certification of certificationsAdmin" align-items-center>
+      <ion-col text-center>
+        {{certification.userid}}
+      </ion-col>
       <ion-col text-center>
         {{certification.name}}
       </ion-col>

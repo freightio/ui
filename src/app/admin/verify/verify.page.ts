@@ -1,7 +1,7 @@
 import * as grpcWeb from 'grpc-web';
 import { Component, OnInit } from '@angular/core';
+import { Certification } from '../../../sdk/user_pb';
 import { CertificationsClient } from '../../../sdk/user_grpc_web_pb';
-import { Certification, UserRequest } from '../../../sdk/user_pb';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -22,22 +22,22 @@ export class VerifyPage implements OnInit {
     let streamAdmin = this.certificationsClient.list(certAdmin, {});
     streamAdmin.on('data', response => {
       this.certificationsAdmin[j] = response.toObject();
-      j = j + 1;
+      j++;
     });
   }
 
-  pass(certification: Certification) {
-    if (certification.getStatus() == 'new') {
-      certification.setStatus('pass');
-    } else {
-      certification.setStatus('new');
+  pass(certification) {
+    if (window.confirm('审核通过?')) {
+      let tsCertification = new Certification();
+      tsCertification.setId(certification.id);
+      tsCertification.setStatus('pass');
+      this.certificationsClient.update(tsCertification, {}, (err: grpcWeb.Error, response: Certification) => {
+        if (err) {
+          alert(JSON.stringify(err));
+        } else {
+          this.ngOnInit();
+        }
+      });
     }
-    this.certificationsClient.update(certification, {}, (err: grpcWeb.Error, response: Certification) => {
-      if (err) {
-        alert(JSON.stringify(err));
-      } else {
-        this.ngOnInit();
-      }
-    });
   }
 }
