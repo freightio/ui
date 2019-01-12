@@ -41,14 +41,14 @@
       <div *ngIf="isAdmin">
         审核列表
         <ion-grid>
-          <ion-row *ngFor="let certification of certificationsAdmin" align-items-center>
-            <ion-col>
+          <ion-row *ngFor="let certification of certificationsAdmin">
+            <ion-col text-center>
               {{certification.name}}
             </ion-col>
-            <ion-col>
+            <ion-col text-center>
               <img [src]="certification.imagedata" height="150px" width="150px">
             </ion-col>
-            <ion-col>
+            <ion-col text-center>
               <ion-checkbox (ionChange)="pass(certification)"></ion-checkbox>
             </ion-col>
           </ion-row>
