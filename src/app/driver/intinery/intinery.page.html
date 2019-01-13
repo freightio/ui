@@ -36,6 +36,9 @@
             {{order.fee}}元
           </ion-text>
         </ion-item>
+        <ion-item *ngIf="isDisplay">
+          备注:{{order.comment}}
+        </ion-item>
         <ion-item>
           <ion-icon name="arrow-dropup"></ion-icon>
         </ion-item>
