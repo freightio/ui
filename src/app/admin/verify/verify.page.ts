@@ -35,6 +35,8 @@ export class VerifyPage implements OnInit {
         if (err) {
           alert(JSON.stringify(err));
         } else {
+          //refresh
+          this.certificationsAdmin = [];
           this.ngOnInit();
         }
       });

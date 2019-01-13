@@ -63,51 +63,6 @@ export class ListPage implements OnInit {
     }, 1000);
   }
 
-  async confirm(order) {
-    if (order.status != 'accept') {
-      return
-    }
-    if (loginService.getUser().id != order.driverid) {
-      window.alert('仅司机可确认订单!');
-      return
-    }
-    const alert = await this.alertController.create({
-      subHeader: '确认订单[' + order.sender.name + ']已完成?',
-      message: '费用[' + order.fee + '元]将打入您的个人钱包中.',
-      buttons: [
-        {
-          text: '取消',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        }, {
-          text: '确定',
-          handler: data => {
-            //TODO:put to backend in transaction
-            let tsOrder = new Order();
-            tsOrder.setId(order.id)
-            tsOrder.setStatus('done');
-            this.ordersClient.update(tsOrder, { 'custom-header-1': 'value1' },
-              (err: grpcWeb.Error, response: Order) => {
-                console.log(response);
-              });
-
-            let account = new Account();
-            account.setFee(order.fee);
-            account.setOrderid(order.id);
-            account.setUserid(order.driverid);
-            this.walletsClient.add(account, {}, (err: grpcWeb.Error, response: Account) => {
-              console.log(response);
-            })
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
-
   async navigate(order: any) {
     const alert = await this.alertController.create({
       header: '开启导航?',

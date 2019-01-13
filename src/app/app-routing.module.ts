@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
   { path: 'login', loadChildren: './user/login/login.module#LoginPageModule' },
   { path: 'signup', loadChildren: './user/signup/signup.module#SignupPageModule' },
-  { path: 'intinery', loadChildren: './intinery/intinery.module#IntineryPageModule' },
+  { path: 'intinery', loadChildren: './driver/intinery/intinery.module#IntineryPageModule' },
   { path: 'ongoing', loadChildren: './driver/ongoing/ongoing.module#OngoingPageModule' },
   { path: 'grab', loadChildren: './driver/grab/grab.module#GrabPageModule' },
   { path: 'certification', loadChildren: './driver/certification/certification.module#CertificationPageModule' },
