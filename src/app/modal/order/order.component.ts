@@ -55,18 +55,19 @@ export class OrderComponent implements OnInit {
         role: 'destructive',
         icon: 'trash',
         handler: () => {
-          alert('正在支付...');
-          let account = new Account();
-          account.setFee(-this.order.fee);
-          //account.setOrderid(order.id);
-          account.setUserid(loginService.getUser().id);
-          this.walletsClient.add(account, {}, (err: grpcWeb.Error, response: Account) => {
-            console.log(response);
-            let payInfo = new PayInfo();
-            payInfo.setType('walletpay');
-            payInfo.setPayresult(JSON.stringify(response));
-            this.saveToDB(payInfo);
-          })
+          if (window.confirm('余额支付[测试中]?')) {
+            let account = new Account();
+            account.setFee(-this.order.fee);
+            //account.setOrderid(order.id);
+            account.setUserid(loginService.getUser().id);
+            this.walletsClient.add(account, {}, (err: grpcWeb.Error, response: Account) => {
+              console.log(response);
+              let payInfo = new PayInfo();
+              payInfo.setType('walletpay');
+              payInfo.setPayresult(JSON.stringify(response));
+              this.saveToDB(payInfo);
+            })
+          }
         }
       }, {
         text: '支付宝',
