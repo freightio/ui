@@ -23,7 +23,7 @@ export class UtilService {
 
   logout() {
     window.localStorage.removeItem('user');
-  }
+  }  
 }
 
 export const loginService = new UtilService();

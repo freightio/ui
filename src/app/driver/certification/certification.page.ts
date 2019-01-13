@@ -2,7 +2,7 @@ import * as grpcWeb from 'grpc-web';
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { CertificationsClient } from '../../../sdk/user_grpc_web_pb';
-import { Certification, UserRequest } from '../../../sdk/user_pb';
+import { Certification } from '../../../sdk/user_pb';
 import { environment } from '../../../environments/environment';
 import { loginService } from '../../providers/util.service';
 
