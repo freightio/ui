@@ -55,7 +55,7 @@ export class OrderComponent implements OnInit {
         role: 'destructive',
         icon: 'trash',
         handler: () => {
-          if (window.confirm('余额支付[测试中]?')) {
+          if (window.confirm('确定余额支付?')) {
             let account = new Account();
             account.setFee(-this.order.fee);
             //account.setOrderid(order.id);

@@ -47,7 +47,7 @@
         <ion-img src="assets/img/from.png"></ion-img>
       </ion-avatar>
       <div>
-        <div (click)="presentFromModal()" expand="block">起点</div>
+        <div (click)="presentFromModal()" style="width:300px">起点</div>
         {{order?.from?.address}}
         <ion-input *ngIf="order.from" [(ngModel)]="order.from.name" class="input-css"></ion-input>
       </div>
@@ -57,7 +57,7 @@
         <ion-img src="assets/img/to.png"></ion-img>
       </ion-avatar>
       <div>
-        <div (click)="presentToModal()" expand="block">终点</div>
+        <div (click)="presentToModal()" style="width:300px">终点</div>
         {{to?.address}}
         <ion-input *ngIf="to" [(ngModel)]="to.name" class="input-css"></ion-input>
       </div>

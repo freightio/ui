@@ -68,7 +68,7 @@ export class IntineryPage implements OnInit {
     }
     let userRequest = new UserRequest();
     userRequest.setId(loginService.getUser().id);
-    this.certificationsClient.isVerified(userRequest, {}, (err: grpcWeb.Error, verified: Verified) => {
+    this.certificationsClient.verify(userRequest, {}, (err: grpcWeb.Error, verified: Verified) => {
       if (verified.getResult()) {
         if (window.confirm('确定接单?')) {
           let tsOrder = new Order();
